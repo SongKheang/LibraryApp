@@ -6,38 +6,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: F9F3EE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #E96151;">
-         <children>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="34.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="113.0" layoutY="36.0" text="User Login " textFill="#f4f0f0">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <Label layoutX="116.0" layoutY="143.0" text="E-mail" />
-      <TextField layoutX="116.0" layoutY="161.0" prefHeight="26.0" prefWidth="308.0" />
-      <Label layoutX="116.0" layoutY="200.0" text="Password" />
-      <TextField layoutX="116.0" layoutY="218.0" prefHeight="26.0" prefWidth="308.0" />
-      <Button layoutX="115.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: #E96151;" text="Login" textFill="WHITE">
+      <Label layoutX="143.0" layoutY="143.0" text="E-mail" />
+      <TextField layoutX="146.0" layoutY="161.0" prefHeight="26.0" prefWidth="308.0" promptText="titotom934@gmail.com" />
+      <Label layoutX="143.0" layoutY="200.0" text="Password" />
+      <TextField layoutX="146.0" layoutY="218.0" prefHeight="26.0" prefWidth="308.0" promptText="Password" />
+      <Button layoutX="150.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: D9AA63;" text="Login">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: #E96151;" text="Register" textFill="WHITE">
+      <Button layoutX="254.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: D9AA63;" text="Register">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="354.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Cencel" textFill="WHITE">
+      <Button layoutX="393.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Cencel">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="264.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="visibility: D9AA63;" />
+      <Text layoutX="173.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to LibraryApp" wrappingWidth="253.33673095703125">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
