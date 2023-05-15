@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefHeight="116.0" prefWidth="600.0" style="-fx-background-color: D9AA63;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox spacing="3.0">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="72.0" text="Label" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField prefHeight="35.0" prefWidth="150.0" promptText="Search" />
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="52.0" style="-fx-background-color: FFFFFF;" text="Search" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Book" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Author" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Profile" />
+                  <Region layoutX="183.0" layoutY="10.0" HBox.hgrow="ALWAYS" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Settings" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <Label prefHeight="51.0" prefWidth="70.0" text="Author" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+      </VBox>
+   </top>
+   <center>
+      <ListView fx:id="authorList" prefHeight="271.0" prefWidth="600.0" style="-fx-background-color: F9F3EE;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
