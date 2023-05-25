@@ -9,10 +9,6 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-<<<<<<< HEAD
-            "projectName": "LibraryApp_f7136e53",
-            "vmArgs": "--module-path \"D:/Documents/ITC_I3/OOP/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
-=======
             "projectName": "LibraryApp_44b02461",
             "vmArgs": "--module-path \"D:/Java Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
 >>>>>>> 11f544f378804904bdae458c6dae86405690750f
