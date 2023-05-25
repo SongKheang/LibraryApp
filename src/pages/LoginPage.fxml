@@ -18,7 +18,7 @@
       <TextField fx:id="usernameField" layoutX="143.0" layoutY="132.0" prefHeight="31.0" prefWidth="323.0" promptText="Username" />
       <PasswordField fx:id="passwordField" layoutX="144.0" layoutY="189.0" prefHeight="31.0" prefWidth="323.0" promptText="Password" />
       <Button fx:id="loginBtn" layoutX="272.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: D9AA63;" text="Login" />
-      <Text fx:id="signUpBtn" fill="#d9aa63" layoutX="275.0" layoutY="354.0" onMouseClicked="#handleSignUp" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+      <Text fx:id="signUpBtn" fill="#d9aa63" layoutX="274.0" layoutY="335.0" onMouseClicked="#handleSignUp" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
          <font>
             <Font size="18.0" />
          </font>
