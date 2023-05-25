@@ -9,7 +9,12 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
+<<<<<<< HEAD
             "projectName": "LibraryApp_bbe97d22"
+=======
+            "projectName": "LibraryApp_44b02461",
+            "vmArgs": "--module-path \"D:/Java Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+>>>>>>> 11f544f378804904bdae458c6dae86405690750f
         },
         {
             "type": "java",
@@ -17,7 +22,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "LibraryApp_722d7e95",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Java Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -25,7 +30,7 @@
             "request": "launch",
             "mainClass": "samples.db.SelectData",
             "projectName": "LibraryApp_3ae05fae",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Java Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -33,38 +38,7 @@
             "request": "launch",
             "mainClass": "samples.db.InsertData",
             "projectName": "LibraryApp_3ae05fae",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "CreateProductTable",
-            "request": "launch",
-            "mainClass": "samples.db.CreateProductTable",
-            "projectName": "LibraryApp_3ae05fae",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "ConnectDB",
-            "request": "launch",
-            "mainClass": "samples.db.ConnectDB",
-            "projectName": "LibraryApp_3ae05fae",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "LibraryApp_3ae05fae",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Java Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
