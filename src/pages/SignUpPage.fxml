@@ -10,22 +10,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
    <children>
-      <Text layoutX="253.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+      <Text layoutX="271.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameField" layoutX="178.0" layoutY="110.0" prefHeight="31.0" prefWidth="213.0" promptText="Username" />
-      <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="169.0" prefHeight="31.0" prefWidth="213.0" promptText="Password" />
-      <PasswordField fx:id="confirmPasswordField" layoutX="178.0" layoutY="225.0" prefHeight="31.0" prefWidth="213.0" promptText="Confirm password" />
-      <Button fx:id="signUpBtn" layoutX="258.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSignUp" style="-fx-background-color: D9AA63;" text="Sign up" />
-      <Text fx:id="loginBtn" fill="#d9aa63" layoutX="263.0" layoutY="346.0" onMouseClicked="#handleLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+      <TextField fx:id="usernameField" layoutX="166.0" layoutY="110.0" prefHeight="31.0" prefWidth="276.0" promptText="Username" />
+      <PasswordField fx:id="passwordField" layoutX="167.0" layoutY="169.0" prefHeight="31.0" prefWidth="276.0" promptText="Password" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="166.0" layoutY="225.0" prefHeight="31.0" prefWidth="276.0" promptText="Confirm password" />
+      <Button fx:id="signUpBtn" layoutX="272.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSignUp" style="-fx-background-color: D9AA63;" text="Sign up" />
+      <Text fx:id="loginBtn" fill="#d9aa63" layoutX="280.0" layoutY="344.0" onMouseClicked="#handleLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
-            <Font size="19.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Text>
-      <Label layoutX="178.0" layoutY="93.0" text="Username" />
-      <Label layoutX="178.0" layoutY="152.0" text="Password" />
-      <Label layoutX="178.0" layoutY="208.0" text="Confirm password" />
+      <Label layoutX="165.0" layoutY="93.0" text="Username" />
+      <Label layoutX="167.0" layoutY="152.0" text="Password" />
+      <Label layoutX="167.0" layoutY="208.0" text="Confirm password" />
    </children>
 </Pane>
