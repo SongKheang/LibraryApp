@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class SignUpController {
 
     @FXML
-    private PasswordField confirmPasswordField;
+    private PasswordField  confirmPasswordField;
 
     @FXML
     private Text loginBtn;
