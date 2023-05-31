@@ -42,8 +42,8 @@
             <TableColumn fx:id="yearCol" prefWidth="76.79998779296875" text="Year" />
             <TableColumn fx:id="pageCol" prefWidth="80.79998779296875" text="Page" />
             <TableColumn fx:id="categoryCol" minWidth="8.0" prefWidth="109.5999755859375" text="Category" />
-            <TableColumn fx:id="categoryCol1" minWidth="8.0" prefWidth="85.60003662109375" text="Borrow Date" />
-            <TableColumn fx:id="categoryCol11" minWidth="8.0" prefWidth="102.39990234375" text="Return Date" />
+            <TableColumn fx:id="borrowdateCol" minWidth="8.0" prefWidth="85.60003662109375" text="Borrow Date" />
+            <TableColumn fx:id="returnCol" minWidth="8.0" prefWidth="102.39990234375" text="Return Date" />
         </columns>
       </TableView>
       <Line endX="1015.0" endY="7.62939453125E-6" layoutX="115.0" layoutY="52.0" startX="-115.00000762939453" startY="7.62939453125E-6" />
