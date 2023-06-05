@@ -70,6 +70,8 @@ public class BookController implements Initializable {
 
     @FXML
     private TableColumn<Books, String> pageCol;
+    @FXML
+    private TableColumn<Books, String> borrowdateCol;
 
     @FXML
     private TextField pageField;
@@ -294,7 +296,7 @@ public class BookController implements Initializable {
             while (resultSet.next()) {
                 books = new Books(resultSet.getString("bookId"), resultSet.getString("title"),
                         resultSet.getString("author"), resultSet.getString("year"), resultSet.getString("page"),
-                        resultSet.getString("category"));
+                        resultSet.getString("category"),resultSet.getString("borrowDate"));
                 bookList.add(books);
             }
         } catch (Exception e) {
@@ -312,6 +314,7 @@ public class BookController implements Initializable {
         yearCol.setCellValueFactory(new PropertyValueFactory<Books, String>("year"));
         pageCol.setCellValueFactory(new PropertyValueFactory<Books, String>("page"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<Books, String>("category"));
+        borrowdateCol.setCellValueFactory(new PropertyValueFactory<Books, String>("borrowDate"));
         tableView.setItems(list);
         Connection conn = DatabaseConnection.getConnection();
         String sqlSelect = "SELECT * FROM users";

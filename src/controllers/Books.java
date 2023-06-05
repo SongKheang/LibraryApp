@@ -7,6 +7,23 @@ public class Books {
     private String year;
     private String page;
     private String category;
+    private String borrowDate;
+    public Books(String bookId, String title, String author, String year, String page, String category,
+            String borrowDate) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.page = page;
+        this.category = category;
+        this.borrowDate = borrowDate;
+    }
+    public String getBorrowDate() {
+        return borrowDate;
+    }
+    public void setBorrowDate(String borrowDate) {
+        this.borrowDate = borrowDate;
+    }
     public Books(String bookId, String title, String author, String year, String page, String category) {
         this.bookId = bookId;
         this.title = title;
