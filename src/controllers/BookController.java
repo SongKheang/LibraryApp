@@ -70,6 +70,7 @@ public class BookController implements Initializable {
 
     @FXML
     private TableColumn<Books, String> pageCol;
+
     @FXML
     private TableColumn<Books, String> borrowdateCol;
 
@@ -89,10 +90,14 @@ public class BookController implements Initializable {
     private TableColumn<Books, String> yearCol;
 
     @FXML
+    private TextField borrowdateField;
+
+    @FXML
     private TextField yearField;
 
     @FXML
     private Text usernameUser;
+
 
     @FXML
     void autoGenerate(MouseEvent event) throws SQLException {
@@ -115,8 +120,9 @@ public class BookController implements Initializable {
         String year = yearField.getText();
         String page = pageField.getText();
         String category = categoryField.getText();
+        String borrowdate = borrowdateField.getText();
         if (title == null || title == "" || author == null || author == "" || year == null || year == "" || page == null
-                || page == "" || category == null || category == "") {
+                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == "") {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -125,13 +131,14 @@ public class BookController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnection.getConnection()) {
-                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`) VALUES (?,?,?,?,?)";
+                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`) VALUES (?,?,?,?,?)";
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setString(1, title);
                 statement.setString(2, author);
                 statement.setString(3, year);
                 statement.setString(4, page);
                 statement.setString(5, category);
+                statement.setString(5, borrowdate);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
@@ -181,9 +188,10 @@ public class BookController implements Initializable {
         String year = yearField.getText();
         String page = pageField.getText();
         String category = categoryField.getText();
+        String borrowdate = borrowdateField.getText();
         boolean con = true;
         if (title == null || title == "" || author == null || author == "" || year == null || year == "" || page == null
-                || page == "" || category == null || category == "") {
+                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == "") {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -198,14 +206,15 @@ public class BookController implements Initializable {
                 id = Integer.parseInt(bookId);
                 while (rs.next()) {
                     if (rs.getInt("bookid") == id) {
-                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,page= ?, category = ? WHERE bookId= ? ";
+                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,page= ?, category = ?,borrowdate = ? WHERE bookId= ? ";
                         PreparedStatement statement2 = conn.prepareStatement(sqlInsert);
                         statement2.setString(1, title);
                         statement2.setString(2, author);
                         statement2.setString(3, year);
                         statement2.setString(4, page);
                         statement2.setString(5, category);
-                        statement2.setInt(6, id);
+                        statement2.setString(6, borrowdate);
+                        statement2.setInt(7, id);
 
                         statement2.executeUpdate();
 
@@ -344,6 +353,7 @@ public class BookController implements Initializable {
         yearField.setText(yearCol.getCellData(index).toString());
         pageField.setText(pageCol.getCellData(index).toString());
         categoryField.setText(categoryCol.getCellData(index).toString());
+        borrowdateField.setText(borrowdateCol.getCellData(index).toString());
     }
 
     @FXML

@@ -7,30 +7,22 @@ public class Books {
     private String year;
     private String page;
     private String category;
-    private String borrowDate;
+    private String borrowdate;
     public Books(String bookId, String title, String author, String year, String page, String category,
-            String borrowDate) {
+            String borrowdate) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.year = year;
         this.page = page;
         this.category = category;
-        this.borrowDate = borrowDate;
+        this.borrowdate = borrowdate;
     }
     public String getBorrowDate() {
-        return borrowDate;
+        return borrowdate;
     }
-    public void setBorrowDate(String borrowDate) {
-        this.borrowDate = borrowDate;
-    }
-    public Books(String bookId, String title, String author, String year, String page, String category) {
-        this.bookId = bookId;
-        this.title = title;
-        this.author = author;
-        this.year = year;
-        this.page = page;
-        this.category = category;
+    public void setBorrowDate(String borrowdate) {
+        this.borrowdate = borrowdate;
     }
     public String getBookId() {
         return bookId;
