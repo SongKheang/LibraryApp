@@ -9,8 +9,9 @@ public class Books {
     private String category;
     private String borrowdate;
     private String studentname;
+    private String studentid;
     public Books(String bookId, String title, String author, String year, String page, String category,
-            String borrowdate, String studentname) {
+            String borrowdate, String studentname,String studentid) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -19,6 +20,7 @@ public class Books {
         this.category = category;
         this.borrowdate = borrowdate;
         this.studentname = studentname;
+        this.studentid = studentid;
     }
     public String getBookId() {
         return bookId;
@@ -67,6 +69,12 @@ public class Books {
     }
     public void setStudentname(String studentname) {
         this.studentname = studentname;
+    }
+    public String getStudentid() {
+        return studentid;
+    }
+    public void setStudentid(String studentid) {
+        this.studentid = studentid;
     }
     
 }

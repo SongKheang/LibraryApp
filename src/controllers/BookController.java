@@ -114,6 +114,9 @@ public class BookController implements Initializable {
     @FXML
     private TextField StuIdField;
 
+    @FXML
+    private TextField studentfield;
+    
 
     @FXML
     void autoGenerate(MouseEvent event) throws SQLException {
@@ -138,8 +141,9 @@ public class BookController implements Initializable {
         String category = categoryField.getText();
         String borrowdate = borrowdateField.getText();
         String studentname = StuNameField.getText();
+        String studentid=studentfield.getText();
         if (title == null || title == "" || author == null || author == "" || year == null || year == "" || page == null
-                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == ""|| studentname == null || studentname == "") {
+                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == ""|| studentname == null || studentname == ""|| studentid == null || studentid == "") {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -148,7 +152,7 @@ public class BookController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnection.getConnection()) {
-                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`,`studentname`) VALUES (?,?,?,?,?,?,?)";
+                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`,`studentname`,`studentid`) VALUES (?,?,?,?,?,?,?,?)";
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setString(1, title);
                 statement.setString(2, author);
@@ -157,6 +161,7 @@ public class BookController implements Initializable {
                 statement.setString(5, category);
                 statement.setString(6, borrowdate);
                 statement.setString(7, studentname);
+                statement.setString(8, studentid);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
@@ -196,6 +201,7 @@ public class BookController implements Initializable {
         titleField.setText(null);
         borrowdateField.setText(null);
         StuNameField.setText(null);
+        studentfield.setText(null);
     }
 
     @FXML
@@ -210,9 +216,10 @@ public class BookController implements Initializable {
         String category = categoryField.getText();
         String borrowdate = borrowdateField.getText();
         String studentname = StuNameField.getText();
+        String studentid=studentfield.getText();
         boolean con = true;
         if (title == null || title == "" || author == null || author == "" || year == null || year == "" || page == null
-                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == ""|| studentname == null || studentname == "") {
+                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == ""|| studentname == null || studentname == ""|| studentid == null || studentid == "") {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -227,7 +234,7 @@ public class BookController implements Initializable {
                 id = Integer.parseInt(bookId);
                 while (rs.next()) {
                     if (rs.getInt("bookid") == id) {
-                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,page= ?, category = ?,borrowdate = ?,studentname = ? WHERE bookId= ? ";
+                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,page= ?, category = ?,borrowdate = ?,studentname = ?,studentid=? WHERE bookId= ? ";
                         PreparedStatement statement2 = conn.prepareStatement(sqlInsert);
                         statement2.setString(1, title);
                         statement2.setString(2, author);
@@ -236,7 +243,8 @@ public class BookController implements Initializable {
                         statement2.setString(5, category);
                         statement2.setString(6, borrowdate);
                         statement2.setString(7, studentname);
-                        statement2.setInt(8, id);
+                        statement2.setString(8, studentid);
+                        statement2.setInt(9, id);
 
                         statement2.executeUpdate();
 
@@ -327,7 +335,7 @@ public class BookController implements Initializable {
             while (resultSet.next()) {
                 books = new Books(resultSet.getString("bookId"), resultSet.getString("title"),
                         resultSet.getString("author"), resultSet.getString("year"), resultSet.getString("page"),
-                        resultSet.getString("category"),resultSet.getString("borrowDate"),resultSet.getString("studentname"));
+                        resultSet.getString("category"),resultSet.getString("borrowDate"),resultSet.getString("studentname"),resultSet.getString("studentid"));
                         System.out.println(resultSet.getString("studentname"));
                 bookList.add(books);
             }
@@ -349,6 +357,7 @@ public class BookController implements Initializable {
         categoryCol.setCellValueFactory(new PropertyValueFactory<Books, String>("category"));
         borrowdateCol.setCellValueFactory(new PropertyValueFactory<Books, String>("borrowdate"));
         StuNameCol.setCellValueFactory(new PropertyValueFactory<Books, String>("studentname"));
+        StuIdCol.setCellValueFactory(new PropertyValueFactory<Books, String>("studentid"));
         tableView.setItems(list);
         
         Connection conn = DatabaseConnection.getConnection();
@@ -381,6 +390,7 @@ public class BookController implements Initializable {
         categoryField.setText(categoryCol.getCellData(index).toString());
         borrowdateField.setText(borrowdateCol.getCellData(index).toString());
         StuNameField.setText(StuNameCol.getCellData(index).toString());
+        studentfield.setText(StuIdCol.getCellData(index).toString());
         //System.out.println(StuNameCol.getCellData(index).toString());
     }
 
