@@ -372,4 +372,10 @@ public class BookController implements Initializable {
         showBooks();
     }
 
+    @FXML
+    void handleSearchField(ActionEvent event) throws SQLException{
+        handleSearch(event);
+
+    }
+
 }

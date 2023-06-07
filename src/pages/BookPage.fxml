@@ -53,7 +53,7 @@
       </TableView>
       <Line endX="1015.0" endY="7.62939453125E-6" layoutX="115.0" layoutY="52.0" startX="-115.00000762939453" startY="7.62939453125E-6" />
       <Circle fill="#d0d4d7" layoutX="1094.0" layoutY="27.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
-      <TextField fx:id="searchField" layoutX="28.0" layoutY="13.0" promptText="Search" />
+      <TextField fx:id="searchField" layoutX="28.0" layoutY="13.0" onAction="#handleSearchField" promptText="Search" />
       <Button fx:id="searchBtn" layoutX="182.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
       <Button fx:id="logoutBtn" layoutX="918.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
       <Text fx:id="usernameUser" layoutX="987.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
