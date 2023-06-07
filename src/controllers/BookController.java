@@ -159,7 +159,7 @@ public class BookController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnection.getConnection()) {
-                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`,`studentname`,`studentid`, `returndate`) VALUES (?,?,?,?,?,?,?,?,?)";
+                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`,`studentname`,`studentid`, `rda`) VALUES (?,?,?,?,?,?,?,?,?)";
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setString(1, title);
                 statement.setString(2, author);
