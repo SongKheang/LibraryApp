@@ -8,8 +8,9 @@ public class Books {
     private String page;
     private String category;
     private String borrowdate;
+    private String studentname;
     public Books(String bookId, String title, String author, String year, String page, String category,
-            String borrowdate) {
+            String borrowdate, String studentname) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -17,12 +18,7 @@ public class Books {
         this.page = page;
         this.category = category;
         this.borrowdate = borrowdate;
-    }
-    public String getBorrowDate() {
-        return borrowdate;
-    }
-    public void setBorrowDate(String borrowdate) {
-        this.borrowdate = borrowdate;
+        this.studentname = studentname;
     }
     public String getBookId() {
         return bookId;
@@ -60,4 +56,17 @@ public class Books {
     public void setCategory(String category) {
         this.category = category;
     }
+    public String getBorrowdate() {
+        return borrowdate;
+    }
+    public void setBorrowdate(String borrowdate) {
+        this.borrowdate = borrowdate;
+    }
+    public String getStudentname() {
+        return studentname;
+    }
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
+    }
+    
 }

@@ -50,6 +50,10 @@ public class BookController implements Initializable {
     @FXML
     private TableColumn<Books, String> authorCol;
 
+    
+    @FXML
+    private TableColumn<Books, String> returnCol;
+
     @FXML
     private TextField authorField;
 
@@ -90,6 +94,12 @@ public class BookController implements Initializable {
     private TableColumn<Books, String> yearCol;
 
     @FXML
+    private TableColumn<Books, String> StuIdCol;
+
+    @FXML
+    private TableColumn<Books, String> StuNameCol;
+
+    @FXML
     private TextField borrowdateField;
 
     @FXML
@@ -97,6 +107,12 @@ public class BookController implements Initializable {
 
     @FXML
     private Text usernameUser;
+
+    @FXML
+    private TextField StuNameField;
+
+    @FXML
+    private TextField StuIdField;
 
 
     @FXML
@@ -121,8 +137,9 @@ public class BookController implements Initializable {
         String page = pageField.getText();
         String category = categoryField.getText();
         String borrowdate = borrowdateField.getText();
+        String studentname = StuNameField.getText();
         if (title == null || title == "" || author == null || author == "" || year == null || year == "" || page == null
-                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == "") {
+                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == ""|| studentname == null || studentname == "") {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -131,14 +148,15 @@ public class BookController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnection.getConnection()) {
-                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`) VALUES (?,?,?,?,?)";
+                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `page`, `category`, `borrowdate`,`studentname`) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setString(1, title);
                 statement.setString(2, author);
                 statement.setString(3, year);
                 statement.setString(4, page);
                 statement.setString(5, category);
-                statement.setString(5, borrowdate);
+                statement.setString(6, borrowdate);
+                statement.setString(7, studentname);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
@@ -176,6 +194,8 @@ public class BookController implements Initializable {
         pageField.setText(null);
         categoryField.setText(null);
         titleField.setText(null);
+        borrowdateField.setText(null);
+        StuNameField.setText(null);
     }
 
     @FXML
@@ -189,9 +209,10 @@ public class BookController implements Initializable {
         String page = pageField.getText();
         String category = categoryField.getText();
         String borrowdate = borrowdateField.getText();
+        String studentname = StuNameField.getText();
         boolean con = true;
         if (title == null || title == "" || author == null || author == "" || year == null || year == "" || page == null
-                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == "") {
+                || page == "" || category == null || category == ""|| borrowdate == null || borrowdate == ""|| studentname == null || studentname == "") {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -206,7 +227,7 @@ public class BookController implements Initializable {
                 id = Integer.parseInt(bookId);
                 while (rs.next()) {
                     if (rs.getInt("bookid") == id) {
-                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,page= ?, category = ?,borrowdate = ? WHERE bookId= ? ";
+                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,page= ?, category = ?,borrowdate = ?,studentname = ? WHERE bookId= ? ";
                         PreparedStatement statement2 = conn.prepareStatement(sqlInsert);
                         statement2.setString(1, title);
                         statement2.setString(2, author);
@@ -214,7 +235,8 @@ public class BookController implements Initializable {
                         statement2.setString(4, page);
                         statement2.setString(5, category);
                         statement2.setString(6, borrowdate);
-                        statement2.setInt(7, id);
+                        statement2.setString(7, studentname);
+                        statement2.setInt(8, id);
 
                         statement2.executeUpdate();
 
@@ -305,7 +327,8 @@ public class BookController implements Initializable {
             while (resultSet.next()) {
                 books = new Books(resultSet.getString("bookId"), resultSet.getString("title"),
                         resultSet.getString("author"), resultSet.getString("year"), resultSet.getString("page"),
-                        resultSet.getString("category"),resultSet.getString("borrowDate"));
+                        resultSet.getString("category"),resultSet.getString("borrowDate"),resultSet.getString("studentname"));
+                        System.out.println(resultSet.getString("studentname"));
                 bookList.add(books);
             }
         } catch (Exception e) {
@@ -315,6 +338,7 @@ public class BookController implements Initializable {
 
     }
 
+
     public void showBooks() throws SQLException {
         ObservableList<Books> list = getBooksList();
         bookIdCol.setCellValueFactory(new PropertyValueFactory<Books, String>("bookId"));
@@ -323,8 +347,10 @@ public class BookController implements Initializable {
         yearCol.setCellValueFactory(new PropertyValueFactory<Books, String>("year"));
         pageCol.setCellValueFactory(new PropertyValueFactory<Books, String>("page"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<Books, String>("category"));
-        borrowdateCol.setCellValueFactory(new PropertyValueFactory<Books, String>("borrowDate"));
+        borrowdateCol.setCellValueFactory(new PropertyValueFactory<Books, String>("borrowdate"));
+        StuNameCol.setCellValueFactory(new PropertyValueFactory<Books, String>("studentname"));
         tableView.setItems(list);
+        
         Connection conn = DatabaseConnection.getConnection();
         String sqlSelect = "SELECT * FROM users";
         PreparedStatement statement = conn.prepareStatement(sqlSelect);
@@ -354,6 +380,8 @@ public class BookController implements Initializable {
         pageField.setText(pageCol.getCellData(index).toString());
         categoryField.setText(categoryCol.getCellData(index).toString());
         borrowdateField.setText(borrowdateCol.getCellData(index).toString());
+        StuNameField.setText(StuNameCol.getCellData(index).toString());
+        //System.out.println(StuNameCol.getCellData(index).toString());
     }
 
     @FXML
