@@ -9,9 +9,15 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
+            "projectName": "Library_app_b35253e5"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
             "projectName": "LibraryApp_40ae7dba",
             "vmArgs": "--module-path \"D:/ITC/I3_Semester2/Introduction to Programming Environment/IPE Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
-
         },
         {
             "type": "java",

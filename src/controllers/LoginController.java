@@ -63,7 +63,7 @@ public class LoginController implements Initializable {
                     statement2.setInt(1, 1);
                     statement2.setString(2, name);
                     statement2.executeUpdate();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/BookPage.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/WelcomePage.fxml"));
                     Parent welcomeParent = loader.load();
                     Scene welcomeScene = new Scene(welcomeParent);
 
@@ -97,7 +97,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
     }
 
 }
