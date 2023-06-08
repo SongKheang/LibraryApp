@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1164.0" style="-fx-background-color: F9F3EE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BookController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1164.0" style="-fx-background-color: F9F3EE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BookController">
    <children>
       <Pane layoutX="36.0" layoutY="80.0" prefHeight="630.0" prefWidth="329.0" style="-fx-background-color: D9AA63;">
          <children>
@@ -49,12 +49,12 @@
             <TableColumn fx:id="StuNameCol" minWidth="8.0" prefWidth="88.0" text="Stu_Name" />
         </columns>
       </TableView>
-      <Line endX="1015.0" endY="7.62939453125E-6" layoutX="115.0" layoutY="52.0" startX="-115.00000762939453" startY="7.62939453125E-6" />
+      <Line endX="1033.626220703125" endY="1.1444091796875E-5" layoutX="115.0" layoutY="52.0" startX="-77.70712280273438" startY="1.1444091796875E-5" />
       <Circle fill="#d0d4d7" layoutX="1094.0" layoutY="27.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
       <TextField fx:id="searchField" layoutX="28.0" layoutY="13.0" onAction="#handleSearchField" promptText="Search" />
       <Button fx:id="searchBtn" layoutX="182.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
-      <Button fx:id="logoutBtn" layoutX="918.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
-      <Text fx:id="usernameUser" layoutX="987.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <Button fx:id="logoutBtn" layoutX="927.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
+      <Text fx:id="usernameUser" layoutX="977.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" wrappingWidth="95.98046875">
          <font>
             <Font size="15.0" />
          </font>
