@@ -1,103 +1,78 @@
-package controllers;
+package Controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-import Config.DatabaseConnection;
+import API.AccountAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
-public class LoginController implements Initializable {
+public class LogInController {
+
+    Services services = new Services();
+    AccountAPI acc = new AccountAPI();
+    public static String role;
 
     @FXML
-    private Button loginBtn;
+    private Button backBtn;
+
+    @FXML
+    private Button logInBtn;
+
+    @FXML
+    private TextField idField;
 
     @FXML
     private PasswordField passwordField;
 
     @FXML
-    private Text signUpBtn;
+    private Button registerBtn;
 
     @FXML
-    private TextField usernameField;
+    private AnchorPane registerPane;
 
     @FXML
-    void handleLogin(ActionEvent event) throws IOException {
-        String name = usernameField.getText();
+    void handleRegisterBtn(ActionEvent event) {
+        services.openPage(event, "/pages/studentSignInPage.fxml");
+    }
+
+    @FXML
+    void handlelogInBtn(ActionEvent event) {
+        String id = idField.getText();
         String password = passwordField.getText();
-        if (name == "" || name == null || password == "" || password == null) {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Fail");
-            alert.setHeaderText(null);
-            alert.setContentText("Please input all fields!");
-            alert.showAndWait();
-        } else {
-            try {
-                Connection connection = DatabaseConnection.getConnection();
-                String sql = "SELECT * FROM users WHERE username=? AND password=?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, name);
-                statement.setString(2, password);
-                ResultSet resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    String sql2 = "UPDATE users SET isActive=? WHERE username = ?";
-                    PreparedStatement statement2 = connection.prepareStatement(sql2);
-                    statement2.setInt(1, 1);
-                    statement2.setString(2, name);
-                    statement2.executeUpdate();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/WelcomePage.fxml"));
-                    Parent welcomeParent = loader.load();
-                    Scene welcomeScene = new Scene(welcomeParent);
 
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setScene(welcomeScene);
-                    window.show();
-                } else {
-                    // System.out.println("Invalid username or password.");
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Fail");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Invalid username or password");
-                    alert.showAndWait();
+        if(id == "" || password == "") {
+            services.alertWarnning("Warnning", "Please complet all fields");
+        }
+        else if(id != "" && password != "") {
+            if(acc.isLogedIn(role, id, password)) {
+                if(role.equalsIgnoreCase("admins")) {
+                    services.openPage(event, "/pages/adminBookListPage.fxml");
                 }
-            } catch (SQLException e) {
-                System.out.println(e);
+                else if(role.equalsIgnoreCase("students")) {
+                    StudentExploreController.studentID = id;
+                    services.openPage(event, "/pages/studentExplorePage.fxml");
+                }
             }
+            else {
+                services.alertWarnning("Invalid password or ID", "Check your password or ID agian");
+            }
+        }
+
+    }
+    
+    @FXML
+    void handleBackPane(ActionEvent event) {
+        services.openPage(event, "/pages/homepage.fxml");
+    }
+
+    @FXML
+    void initialize() {
+        if(role.equalsIgnoreCase("admins")) {
+            registerPane.setVisible(false);
         }
     }
 
-    @FXML
-    void handleSignUp(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/SignUpPage.fxml"));
-        Parent welcomeParent = loader.load();
-        Scene welcomeScene = new Scene(welcomeParent);
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(welcomeScene);
-        window.show();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
 }
+
