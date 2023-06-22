@@ -5,15 +5,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    public static void main(String[] args) throws Exception {
-        launch(args);
+    public static void main(String[] args) {
+    launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/pages/LoginPage.fxml"));
-        stage.setTitle("Welcome to Library App");
-        stage.setScene(new Scene(root));
-        stage.show();
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./pages/adminStudentInfoPage.fxml"));
+        Parent root = loader.load();
+        primaryStage.setTitle("Welcome To Library App");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }

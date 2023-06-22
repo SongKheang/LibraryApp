@@ -174,7 +174,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <AnchorPane fx:id="bookDetailsPane" prefHeight="615.2" prefWidth="974.4" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="bookDetailsPane" prefHeight="615.2" prefWidth="974.4" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Text fill="#06367a" layoutX="368.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Detail" wrappingWidth="135.247802734375">
                                  <font>
@@ -372,6 +372,14 @@
                            </cursor>
                         </Button>
                         <Button fx:id="insertBookBtn" layoutX="1.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleInsertBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED;" text="Insert Book" textAlignment="CENTER" AnchorPane.leftAnchor="1.0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="borrowBookBtn" layoutY="344.0" mnemonicParsing="false" onAction="#handleBorrowBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED;" text="Borrow Book" textAlignment="CENTER">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>
