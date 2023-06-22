@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.mysql.cj.x.protobuf.MysqlxExpect.Open.Condition;
-
 import Config.DatabaseConnection;
 import Controllers.Services;
 import javafx.collections.FXCollections;

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsertBookController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.editBookController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1070.0" style="-fx-background-color: #DDE6ED;">
          <children>
@@ -32,7 +32,7 @@
                <center>
                   <AnchorPane prefHeight="615.0" prefWidth="843.0" style="-fx-background-color: white; -fx-background-radius: 0;" BorderPane.alignment="CENTER">
                      <children>
-                        <Text fill="#06367a" layoutX="354.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert New Book" wrappingWidth="180.04779052734375">
+                        <Text fill="#06367a" layoutX="370.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Book" wrappingWidth="180.04779052734375">
                            <font>
                               <Font name="Times New Roman Bold" size="25.0" />
                            </font>
@@ -112,14 +112,14 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="bookCover" fitHeight="323.0" fitWidth="210.0" layoutX="630.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bookCover" fitHeight="323.0" fitWidth="210.0" layoutX="630.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/default-book.png" />
                            </image>
                         </ImageView>
                         <ComboBox fx:id="categoryComboBox" layoutX="246.0" layoutY="360.0" onAction="#handleCategoryComboBox" prefHeight="35.0" prefWidth="30.0" style="-fx-background-color: white; -fx-border-color: white white white  #9DB2BF;" />
-                        <ComboBox fx:id="qualityComboBox" layoutX="340.0" layoutY="188.0" onAction="#handleQualityComboBox" prefHeight="41.0" prefWidth="250.0" promptText="..." style="-fx-background-color: white; -fx-border-color: #9DB2BF; -fx-border-radius: 4;" />
-                        <Button fx:id="insertBtn" layoutX="220.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleInsertBtn" prefHeight="58.0" prefWidth="201.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 30;" text="Insert" textFill="#00275c">
+                        <ComboBox fx:id="qualityComboBox" layoutX="340.0" layoutY="188.0" onAction="#handleQualityComboBox" prefHeight="41.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #9DB2BF; -fx-border-radius: 4;" />
+                        <Button fx:id="insertBtn" layoutX="220.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleInsertBtn" prefHeight="58.0" prefWidth="201.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 30;" text="Update" textFill="#00275c">
                            <font>
                               <Font name="Times New Roman" size="25.0" />
                            </font>
@@ -142,6 +142,16 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <ImageView fitHeight="41.0" fitWidth="31.0" layoutX="39.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/left-arrow.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="backBtn" layoutX="29.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleBackPane" opacity="0.0" prefHeight="39.0" prefWidth="52.0" text="Button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </AnchorPane>
                </center>
@@ -149,7 +159,7 @@
                   <AnchorPane prefHeight="615.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED; -fx-background-radius: 30;" BorderPane.alignment="CENTER">
                      <children>
                         <Circle fill="#00dcff" layoutX="97.0" layoutY="54.0" radius="30.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                        <Button fx:id="listBookBtn" layoutY="117.0" mnemonicParsing="false" onAction="#handleListBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED; -fx-background-radius: 0;" text="List Book">
+                        <Button fx:id="listBookBtn" layoutY="117.0" mnemonicParsing="false" onAction="#handleListBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #27374D; -fx-background-radius: 0;" text="List Book" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>
@@ -199,7 +209,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="insertBookBtn" layoutY="299.0" mnemonicParsing="false" onAction="#handleInsertBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #27374D; -fx-background-radius: 0;" text="Insert Book" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="insertBookBtn" layoutY="299.0" mnemonicParsing="false" onAction="#handleInsertBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED; -fx-background-radius: 0;" text="Insert Book" textAlignment="CENTER">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>
@@ -207,7 +217,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="borrowBookBtn" layoutY="344.0" mnemonicParsing="false" onAction="#handleBorrowBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED;" text="Borrow Book" textAlignment="CENTER">
+                        <Button fx:id="borrowBookBtn" layoutY="344.0" mnemonicParsing="false" onAction="#handleBorrowBookBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED; -fx-background-radius: 0;" text="Borrow Book" textAlignment="CENTER">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>

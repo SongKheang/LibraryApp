@@ -1,7 +1,6 @@
 package API;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -31,20 +30,18 @@ public class StudentExploreAPI {
         bookList = FXCollections.observableArrayList();
     }
 
-    public void borrowBook(ObservableList<Books> cartList, String studentID, String borrowDate, String returnDate,
-            String isReturn) {
+    public void borrowBook(ObservableList<Books> cartList, String studentID, String borrowDate, String returnDate, String isReturn) {
         String sql = " INSERT INTO borrowlist(bookID, borrower, borrowDate, returnDate, isReturned) VALUES ";
-        for (Books books : cartList) {
+        for(Books books : cartList) {
             int bookID = books.getBookID();
             updateRemain(bookID);
-            sql += "('" + bookID + "','" + studentID + "','" + borrowDate + "','" + returnDate + "','" + isReturn
-                    + "'),";
+            sql += "('" + bookID +"','" + studentID +"','" + borrowDate +"','" + returnDate +"','" + isReturn +"'),";
         }
-        sql = sql.substring(0, sql.length() - 1);
+        sql = sql.substring(0, sql.length()-1);
         try {
             stmt = conn.prepareStatement(sql);
             int row = stmt.executeUpdate();
-            if (row > 0) {
+            if(row>0) {
                 services.alertSuccess("Borrow successfully ...");
             }
         } catch (Exception e) {
@@ -64,11 +61,11 @@ public class StudentExploreAPI {
 
     public int getNumberOfBookStudentBorrow(String studentID) {
         int count = 0;
-        String sql = "SELECT COUNT(borrower) from borrowlist where borrower LIKE '" + studentID + "'";
+        String sql = "SELECT COUNT(borrower) from borrowlist where borrower LIKE '" + studentID + "' and isReturned = '0'";
         try {
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
-            if (rs.next()) {
+            if(rs.next()) {
                 count = rs.getInt(1);
                 return count;
             }
@@ -78,4 +75,5 @@ public class StudentExploreAPI {
         return count;
     }
 
+    
 }

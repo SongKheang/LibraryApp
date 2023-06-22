@@ -192,7 +192,7 @@
                            </cursor>
                         </Button>
                         <ComboBox fx:id="categoryComboBox" layoutX="68.0" layoutY="14.0" onAction="#haddleCategoryComboBox" prefWidth="150.0" promptText="Category" />
-                        <AnchorPane fx:id="cartPane" prefHeight="615.0" prefWidth="872.0" style="-fx-background-color: white;">
+                        <AnchorPane fx:id="cartPane" prefHeight="615.0" prefWidth="872.0" style="-fx-background-color: white;" visible="false">
                            <children>
                               <ImageView fitHeight="41.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="26.0">
                                  <image>

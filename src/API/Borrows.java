@@ -5,9 +5,21 @@ public class Borrows {
     private String title;
     private String borrower;
     private String phoneNumber;
+    private String author;
+    private String bookshelf;
     private String borrowDate;
     private String returnDate;
     private String isReturned;
+    public Borrows(int bookID, String title, String author, String bookshelf, String borrowDate, String returnDate,
+            String isReturned, String student) {
+        this.bookID = bookID;
+        this.title = title;
+        this.author = author;
+        this.bookshelf = bookshelf;
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
+        this.isReturned = isReturned;
+    }
     public Borrows(int bookID, String title, String borrower, String phoneNumber, String borrowDate, String returnDate,
             String isReturned) {
         this.bookID = bookID;
@@ -59,5 +71,17 @@ public class Borrows {
     }
     public void setIsReturned(String isReturned) {
         this.isReturned = isReturned;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    public String getBookshelf() {
+        return bookshelf;
+    }
+    public void setBookshelf(String bookshelf) {
+        this.bookshelf = bookshelf;
     }
 }

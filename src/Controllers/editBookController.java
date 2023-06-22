@@ -2,7 +2,6 @@ package Controllers;
 
 import API.BookListAPI;
 import API.Books;
-import API.InsertBookAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,18 +13,24 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class InsertBookController {
+public class editBookController {
 
-    Services services = new Services();
+    public static int bookID;
     Books books;
-    InsertBookAPI insertBookAPI = new InsertBookAPI();
     BookListAPI bookListAPI = new BookListAPI();
+    Services services = new Services();
+
+    @FXML
+    private Button backBtn;
 
     @FXML
     private Button adminInfo;
 
     @FXML
     private TextField authorField;
+
+    @FXML
+    private ImageView bookCover;
 
     @FXML
     private TextField booksheltField;
@@ -79,9 +84,6 @@ public class InsertBookController {
     private TextField yearField;
 
     @FXML
-    private ImageView bookCover;
-
-    @FXML
     private Button borrowBookBtn;
 
     @FXML
@@ -90,13 +92,13 @@ public class InsertBookController {
     }
 
     @FXML
-    void handleCategoryComboBox(ActionEvent event) {
-        categoryField.setText(categoryComboBox.getValue());
+    void handleAdminInfo(ActionEvent event) {
+        services.openPage(event, "/pages/adminInfoPage.fxml");
     }
 
     @FXML
-    void handleAdminInfo(ActionEvent event) {
-        services.openPage(event, "/pages/adminInfoPage.fxml");
+    void handleCategoryComboBox(ActionEvent event) {
+        categoryField.setText(categoryComboBox.getValue());
     }
 
     @FXML
@@ -110,7 +112,6 @@ public class InsertBookController {
         quantityField.setText("");
         booksheltField.setText("");
         bookCover.setImage(services.getImageWithPath("/BookCover/default-book.png"));
-
     }
 
     @FXML
@@ -121,7 +122,9 @@ public class InsertBookController {
     }
 
     @FXML
-    void handleInsertBookBtn(ActionEvent event) {}
+    void handleInsertBookBtn(ActionEvent event) {
+
+    }
 
     @FXML
     void handleInsertBtn(ActionEvent event) {
@@ -148,11 +151,11 @@ public class InsertBookController {
             services.alertWarnning("Complete problem", "Please complete all inportances Info");
         } else if (title != "" && author != "" && quality != "" && quantity != 0 && bookshelf != "") {
             books = new Books(title, author, year, Category, page, quality, bookshelf, quantity, bookCoverPath);
-            insertBookAPI.insertBook(books);
+            bookListAPI.updateBook(bookID, books);
             handleClear(event);
-            services.alertSuccess("Insert Book Successfully");
+            services.openPage(event, "/pages/adminBookListPage.fxml");
+            services.alertSuccess("Update Book Successfully");
         }
-
     }
 
     @FXML
@@ -181,16 +184,34 @@ public class InsertBookController {
     }
 
     @FXML
+    void handleBackPane(ActionEvent event) {
+        services.openPage(event, "/pages/adminBookListPage.fxml");
+    }
+
+    @FXML
     void initialize() {
+        setField();
         setCategoryComboBox();
         setQualityComboBox();
         studentName.setText(LogInController.userID);
     }
 
+    public void setField() {
+        books = bookListAPI.getSelectedBook(bookID);
+        titleField.setText(books.getTitle());
+        authorField.setText(books.getAuthor());
+        yearField.setText(Integer.toString(books.getYear()));
+        categoryField.setText(books.getCategory());
+        pageField.setText(Integer.toString(books.getPage()));
+        qualityComboBox.setValue(books.getQuality());
+        quantityField.setText(Integer.toString(books.getQuantity()));
+        booksheltField.setText(books.getBookshelf());
+        bookCover.setImage(services.getImageWithPath(books.getBookCoverPath()));
+    }
+
     public void setCategoryComboBox() {
         ObservableList<String> categoryList = FXCollections.observableArrayList();
         categoryList = bookListAPI.getCategory();
-        categoryList.remove(0);
         categoryComboBox.setItems(categoryList);
     }
 
@@ -198,4 +219,5 @@ public class InsertBookController {
         ObservableList<String> qualityList = FXCollections.observableArrayList("New", "Meduim", "Old", "Unreadable");
         qualityComboBox.setItems(qualityList);
     }
+
 }

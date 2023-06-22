@@ -2,6 +2,7 @@ package Controllers;
 
 import API.AdminBorrowListAPI;
 import API.Borrows;
+import API.StudentDashboardAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,36 +17,36 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class AdminBorrowListController {
+public class StudentDashboardController {
 
+    StudentDashboardAPI studentDashboardAPI = new StudentDashboardAPI();
     AdminBorrowListAPI adminBorrowListAPI = new AdminBorrowListAPI();
     Services services = new Services();
+    public static String studentID = LogInController.userID;
+
     @FXML
-    private Button adminInfo;
+    private TableColumn<Borrows, String> authorColumn;
 
     @FXML
     private TableColumn<Borrows, Integer> bookIdColumn;
 
     @FXML
-    private Button borrowBookBtn;
+    private TableColumn<Borrows, String> bookshelfColumn;
 
     @FXML
     private TableColumn<Borrows, String> borrowDateColumn;
 
     @FXML
-    private TableColumn<Borrows, String> borrowerColumn;
-
-    @FXML
     private Button clearSearchBtn;
 
     @FXML
-    private Button insertBookBtn;
+    private Button editBtn;
+
+    @FXML
+    private Button exploreBtn;
 
     @FXML
     private TableColumn<Borrows, String> isReturnedColumn;
-
-    @FXML
-    private Button listBookBtn;
 
     @FXML
     private AnchorPane listBooksPane;
@@ -57,19 +58,16 @@ public class AdminBorrowListController {
     private Button logOutBtn;
 
     @FXML
-    private TableColumn<Borrows, String> phoneNumberColumn;
+    private Button returnBookBtn;
 
     @FXML
-    private Button returnBookBtn;
+    private ComboBox<String> returnComboBox;
 
     @FXML
     private TableColumn<Borrows, String> returnDateColumn;
 
     @FXML
     private TextField searchField;
-
-    @FXML
-    private Button studentInfoBtn;
 
     @FXML
     private Text studentName;
@@ -81,41 +79,19 @@ public class AdminBorrowListController {
     private TableColumn<Borrows, String> titleColumn;
 
     @FXML
-    private ComboBox<String> returnComboBox;
-
-    @FXML
-    void handleStudentInfoBtn(ActionEvent event) {
-        services.openPage(event, "/pages/adminStudentInfoPage.fxml");
-    }
-    
-    @FXML
-    void handleInsertBookBtn(ActionEvent event) {
-        services.openPage(event, "/pages/insertBookPage.fxml");
-    }
-
-     @FXML
-    void handleAdminInfo(ActionEvent event) {
-        services.openPage(event, "/pages/adminInfoPage.fxml");
-    }
-
-    @FXML
-    void handleListBookBtn(ActionEvent event) {
-        services.openPage(event, "/pages/AdminBookListPage.fxml");
-    }
-
-    @FXML
-    void handlelistBorrowBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleBorrowBookBtn(ActionEvent event) {
-        services.openPage(event, "/pages/adminBorrowPage.fxml");
-    }
-
-    @FXML
     void handleClearSearch(ActionEvent event) {
-        adminBorrowListAPI.setBorrowsList(adminBorrowListAPI.getBorrowList("", "", comboText));
+        studentDashboardAPI.setBorrowsList(studentDashboardAPI.getBorrowList(studentID, "", comboText));
+
+    }
+
+    @FXML
+    void handleEditBtn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleExploreBtn(ActionEvent event) {
+        services.openPage(event, "/pages/studentExplorePage.fxml");
     }
 
     @FXML
@@ -127,28 +103,12 @@ public class AdminBorrowListController {
     void handleReturnBookBtn(ActionEvent event) {
         if(selectedBorrows != null) {
             int bookID = selectedBorrows.getBookID();
-            String studentID = selectedBorrows.getBorrower();
             adminBorrowListAPI.returnBook(bookID, studentID);
             selectedBorrows = null;
             handleClearSearch(event);
         }
         else {
             services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
-        }
-    }
-
-    @FXML
-    void handleSearchField(ActionEvent event) {
-        String searchText = searchField.getText();
-        adminBorrowListAPI.setBorrowsList(adminBorrowListAPI.getBorrowList(" where books.title LIKE '%" + searchText + "%' or students.studentID LIKE '%" + searchText + "%'"," where books.title LIKE '%" + searchText + "%' or borroweroutside.name LIKE '%" + searchText + "%'", comboText));
-    }
-
-    Borrows selectedBorrows;
-    @FXML
-    void selectItem(MouseEvent event) {
-        if (event.getClickCount() >= 1) {
-            TableView.TableViewSelectionModel<Borrows> selectionModel = tableView.getSelectionModel();
-            selectedBorrows = selectionModel.getSelectedItem();
         }
     }
 
@@ -169,23 +129,45 @@ public class AdminBorrowListController {
     }
 
     @FXML
+    void handleSearchField(ActionEvent event) {
+        String searchText = searchField.getText();
+        studentDashboardAPI.setBorrowsList(studentDashboardAPI.getBorrowList(studentID, "AND books.title LIKE '%" + searchText + "%'", comboText));
+    }
+
+
+    @FXML
+    void handlelistBorrowBtn(ActionEvent event) {
+
+    }
+
+    Borrows selectedBorrows;
+    @FXML
+    void selectItem(MouseEvent event) {
+        if (event.getClickCount() >= 1) {
+            TableView.TableViewSelectionModel<Borrows> selectionModel = tableView.getSelectionModel();
+            selectedBorrows = selectionModel.getSelectedItem();
+        }
+    }
+
+    @FXML
     void initialize() {
         showListBook();
         setReturnComboBox();
-        studentName.setText(LogInController.userID);
+        studentName.setText(studentID);
     }
 
     public void showListBook() {
+
         bookIdColumn.setCellValueFactory(new PropertyValueFactory<Borrows, Integer>("bookID"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("title"));
-        borrowerColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("borrower"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("phoneNumber"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("author"));
+        bookshelfColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("bookshelf"));
         borrowDateColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("borrowDate"));
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("returnDate"));
         isReturnedColumn.setCellValueFactory(new PropertyValueFactory<Borrows, String>("isReturned"));
 
-        adminBorrowListAPI.setBorrowsList(adminBorrowListAPI.getBorrowList("","", "No"));
-        tableView.setItems(adminBorrowListAPI.getBorrowsList());
+        studentDashboardAPI.setBorrowsList(studentDashboardAPI.getBorrowList(studentID, "", "No"));
+        tableView.setItems(studentDashboardAPI.getBorrowsList());
     }
 
     public void setReturnComboBox() {

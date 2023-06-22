@@ -366,15 +366,15 @@ public class AdminBorrowController {
     }
     @FXML
     void handlelistBorrowBtn(ActionEvent event) {
-
+        services.openPage(event, "/pages/adminBorrowListPage.fxml");
     }
     @FXML
     void handleStudentInfoBtn(ActionEvent event) {
-
+        services.openPage(event, "/pages/adminStudentInfoPage.fxml");
     }
     @FXML
     void handleAdminInfo(ActionEvent event) {
-
+        services.openPage(event, "/pages/adminInfoPage.fxml");
     }
     @FXML
     void handleInsertBookBtn(ActionEvent event) {
@@ -385,13 +385,9 @@ public class AdminBorrowController {
 
     @FXML
     void selectItem(MouseEvent event) {
-        // Check if the user clicked on a row
+
         if (event.getClickCount() == 1) {
-
-            // Get the table view's selection model
             TableView.TableViewSelectionModel<Books> selectionModel = tableView.getSelectionModel();
-
-            // Get the selected row
             selectedBook = selectionModel.getSelectedItem();
         } else if (event.getClickCount() >= 2) {
             openBookDetail();

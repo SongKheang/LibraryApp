@@ -13,6 +13,7 @@ public class LogInController {
     Services services = new Services();
     AccountAPI acc = new AccountAPI();
     public static String role;
+    public static String userID;
 
     @FXML
     private Button backBtn;
@@ -47,11 +48,11 @@ public class LogInController {
         }
         else if(id != "" && password != "") {
             if(acc.isLogedIn(role, id, password)) {
+                userID = id;
                 if(role.equalsIgnoreCase("admins")) {
                     services.openPage(event, "/pages/adminBookListPage.fxml");
                 }
                 else if(role.equalsIgnoreCase("students")) {
-                    StudentExploreController.studentID = id;
                     services.openPage(event, "/pages/studentExplorePage.fxml");
                 }
             }
@@ -75,4 +76,3 @@ public class LogInController {
     }
 
 }
-

@@ -150,6 +150,14 @@ public class AdminBookListController {
     private ComboBox<String> categoryComboBox;
 
     @FXML
+    private Button borrowBookBtn;
+
+    @FXML
+    void handleBorrowBookBtn(ActionEvent event) {
+        services.openPage(event, "/pages/adminBorrowPage.fxml");
+    }
+
+    @FXML
     void haddleCategoryComboBox(ActionEvent event) {
         String category = categoryComboBox.getValue();
         if (category.equalsIgnoreCase("All")) {
@@ -163,7 +171,7 @@ public class AdminBookListController {
 
     @FXML
     void handleAdminInfo(ActionEvent event) {
-
+        services.openPage(event, "/pages/adminInfoPage.fxml");
     }
 
     @FXML
@@ -181,18 +189,23 @@ public class AdminBookListController {
     @FXML
     void handleDeleteBook(ActionEvent event) {
         int bookID = selectedBook.getBookID();
-        bookListAPI.deleteBook(bookID);
-        tableView.setItems(bookListAPI.getBookList());
-        services.openPage(event, "/pages/adminBookListPage.fxml");
+
+        if (selectedBook != null) {
+            bookListAPI.deleteBook(bookID);
+            tableView.setItems(bookListAPI.getBookList());
+            selectedBook = null;
+            services.openPage(event, "/pages/adminBookListPage.fxml");
+        } else {
+            services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
+        }
     }
 
     @FXML
     void handleEditBookBtn(ActionEvent event) {
-        if(selectedBook != null) {
+        if (selectedBook != null) {
             editBookController.bookID = selectedBook.getBookID();
             services.openPage(event, "/pages/editBookPage.fxml");
-        }
-        else {
+        } else {
             services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
         }
     }
@@ -201,6 +214,7 @@ public class AdminBookListController {
     void handleInsertBtn(ActionEvent event) {
         services.openPage(event, "/pages/insertBookPage.fxml");
     }
+
     @FXML
     void handleInsertBookBtn(ActionEvent event) {
         services.openPage(event, "/pages/insertBookPage.fxml");
@@ -231,7 +245,7 @@ public class AdminBookListController {
 
     @FXML
     void handleStudentInfoBtn(ActionEvent event) {
-
+        services.openPage(event, "/pages/adminStudentInfoPage.fxml");
     }
 
     @FXML
@@ -249,7 +263,7 @@ public class AdminBookListController {
 
     @FXML
     void handlelistBorrowBtn(ActionEvent event) {
-
+        services.openPage(event, "/pages/adminBorrowListPage.fxml");
     }
 
     @FXML
@@ -269,8 +283,7 @@ public class AdminBookListController {
 
             // Get the selected row
             selectedBook = selectionModel.getSelectedItem();
-        }
-        else if(event.getClickCount() >= 2) {
+        } else if (event.getClickCount() >= 2) {
             openBookDetail();
         }
     }
@@ -280,6 +293,7 @@ public class AdminBookListController {
         showListBook();
         setCategoryComboBox();
         bookDetailsPane.setVisible(false);
+        studentName.setText(LogInController.userID);
     }
 
     public void showListBook() {
@@ -315,7 +329,7 @@ public class AdminBookListController {
         remainText.setText(Integer.toString(books.getRemain()));
         bookshelfText.setText(books.getBookshelf());
         bookCover.setImage(services.getImageWithPath(books.getBookCoverPath()));
-        
+
     }
 
 }

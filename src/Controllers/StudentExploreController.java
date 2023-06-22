@@ -1,6 +1,5 @@
 package Controllers;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import API.BookListAPI;
@@ -18,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -28,7 +28,7 @@ public class StudentExploreController {
     BookListAPI bookListAPI = new BookListAPI();
     Books books;
     StudentExploreAPI studentExploreAPI = new StudentExploreAPI();
-    public static String studentID;
+    public String studentID = LogInController.userID;
 
     @FXML
     private Button addToCartBtn;
@@ -197,7 +197,19 @@ public class StudentExploreController {
     @FXML
     void handleAddToCartBtn(ActionEvent event) {
         if (selectedBook != null) {
-            if (limitOfBorrowing - cartList.size() > 0) {
+            boolean bookExist = false;
+            for (Books b : cartList) {
+                if (b.getBookID() == books.getBookID()) {
+                    bookExist = true;
+                    break;
+                }
+            }
+
+            if (bookExist) {
+                services.alertWarnning("Warning", "Books already exist in cart ...");
+
+            }
+            else if (limitOfBorrowing - cartList.size() > 0) {
                 books = new Books(selectedBook.getBookID(), selectedBook.getTitle(), selectedBook.getAuthor(),
                         selectedBook.getYear(), selectedBook.getCategory(), selectedBook.getPage(),
                         selectedBook.getBookshelf());
@@ -219,7 +231,34 @@ public class StudentExploreController {
 
     @FXML
     void handleBorrowBtn(ActionEvent event) {
+        if (selectedBook != null) {
+            books = new Books(selectedBook.getBookID(), selectedBook.getTitle(), selectedBook.getAuthor(),
+                    selectedBook.getYear(), selectedBook.getCategory(), selectedBook.getPage(),
+                    selectedBook.getBookshelf());
 
+            boolean bookExist = false;
+            for (Books b : cartList) {
+                if (b.getBookID() == books.getBookID()) {
+                    bookExist = true;
+                    break;
+                }
+            }
+
+            if (bookExist) {
+                services.alertWarnning("Warning", "Books already exist in cart ...");
+
+            } else if (limitOfBorrowing - cartList.size() > 0) {
+                cartList.add(books);
+                handleCartBtn(event);
+                bookDetailsPane.setVisible(false);
+                selectedBook = null;
+                cartNumber.setText(Integer.toString(cartList.size()));
+            } else {
+                services.alertWarnning("Sorry", "You're out of limitation for cart ... !");
+            }
+        } else {
+            services.alertWarnning("Warning", "Please select book first ...");
+        }
     }
 
     @FXML
@@ -260,27 +299,17 @@ public class StudentExploreController {
 
     @FXML
     void handleDashboardBtn(ActionEvent event) {
-
+        services.openPage(event, "/pages/studentDashboardPage.fxml");
     }
 
     @FXML
     void handleDeleteCartBtn(ActionEvent event) {
-        if (selectedCart == null) {
+        if (selectedIndex == -1) {
             services.alertWarnning("Wanning", "Please select book in the list first ...");
         } else {
-            // System.out.println("Yess" + selectedCart.getAuthor());
-            // books = new Books(selectedCart.getBookID(), selectedCart.getTitle(),
-            // selectedCart.getAuthor(), selectedCart.getYear(), selectedCart.getCategory(),
-            // selectedCart.getPage(), selectedCart.getBookshelf());
             int index = selectedIndex;
-            System.out.println(index);
             cartList.remove(index);
-            System.out.println(cartList.size());
-            tableViewCart.setItems(cartList);
-            // selectedCart = null;
-            if (!cartList.contains(selectedCart)) {
-                System.out.println("The element is removed.");
-            }
+            selectedIndex = -1;
         }
 
     }
@@ -342,18 +371,12 @@ public class StudentExploreController {
         }
     }
 
-    Books selectedCart;
     int selectedIndex;
 
     @FXML
     void selectItemCart(MouseEvent event) {
-        // Check if the user clicked on a row
-        if (event.getClickCount() >= 1) {
-            // TableView.TableViewSelectionModel<int> selectedIndex =
-            // tableViewCart.getSelectionModel().getSelectedIndex();
+        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1) {
             selectedIndex = tableViewCart.getSelectionModel().getSelectedIndex();
-            // selectedCart = selectionModel.getSelectedItem();
-            System.out.println(selectedCart.getAuthor());
         }
     }
 
@@ -366,6 +389,7 @@ public class StudentExploreController {
         cartPane.setVisible(false);
         cartNumber.setText(Integer.toString(cartList.size()));
         limitOfBorrowing = 5 - studentExploreAPI.getNumberOfBookStudentBorrow(studentID);
+        studentName.setText(studentID);
     }
 
     public void showListBook() {
