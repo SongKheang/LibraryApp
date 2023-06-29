@@ -9,7 +9,18 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "Library_app_b35253e5"
+            "projectName": "LibraryApp_5599e889",
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "Library_app_b35253e5",
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+
         },
         {
             "type": "java",
@@ -17,7 +28,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "LibraryApp_40ae7dba",
-            "vmArgs": "--module-path \"D:/ITC/I3_Semester2/Introduction to Programming Environment/IPE Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -25,7 +36,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "LibraryApp_b831e7f4",
-            "vmArgs": "--module-path \"D:/ITC/I3_Semester2/Introduction to Programming Environment/IPE Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -33,7 +44,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "LibraryApp_44b02461",
-            "vmArgs": "--module-path \"D:/ITC/I3_Semester2/Introduction to Programming Environment/IPE Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -41,7 +52,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "LibraryApp_2ac5920",
-            "vmArgs": "--module-path \"D:/ITC/I3_Semester2/Introduction to Programming Environment/IPE Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -49,7 +60,7 @@
             "request": "launch",
             "mainClass": "${file}",
             "projectName": "LibraryApp_722d7e95",
-            "vmArgs": "--module-path \"D:/ITC/I3_Semester2/Introduction to Programming Environment/IPE Project/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"D:/Documents/ITC_I3/API/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
