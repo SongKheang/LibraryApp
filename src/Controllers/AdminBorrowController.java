@@ -193,7 +193,7 @@ public class AdminBorrowController {
         if (category.equalsIgnoreCase("All")) {
             handleClearSearch(event);
         } else {
-            bookListAPI.setBookList(bookListAPI.searchBooks("category", category));
+            bookListAPI.setBookList(adminBorrowAPI.searchBooks("category", category));
             tableView.setItems(bookListAPI.getBookList());
         }
 
@@ -219,8 +219,8 @@ public class AdminBorrowController {
 
             }
             else if (cartList.size() < 5 && !cartList.contains(books)) {
-                cartList.add(books);
                 selectedBook = null;
+                cartList.add(books);
                 cartNumber.setText(Integer.toString(cartList.size()));
             }
             else {
@@ -252,7 +252,7 @@ public class AdminBorrowController {
             }
             
             if(bookExist) {
-                services.alertWarnning("Warning", "Books already exist in cart ...");
+                services.alertWarnning("Warning", "Book already exists in cart ...");
 
             }
             else if (cartList.size() < 5 && !cartList.contains(books)) {
@@ -263,7 +263,7 @@ public class AdminBorrowController {
                 cartNumber.setText(Integer.toString(cartList.size()));
             }
             else {
-                services.alertWarnning("Sorry", "You're out of limitation for cart ... !");
+                services.alertWarnning("Sorry", "You have reached the limit for cart ... !");
             }
         } else {
             services.alertWarnning("Warning", "Please select book first ...");
@@ -278,12 +278,25 @@ public class AdminBorrowController {
         String borrower = borrowerNameField.getText();
         String numberPhone = borrowerNumberPhoneField.getText();
         int limitOfBorrowing = 5 - adminBorrowAPI.getNumberOfBookBorrowerBorrow(numberPhone);
+        boolean alreadyBorrowed = false;
+
+        for(Books b : cartList) {
+            if(adminBorrowAPI.getBorrowedBookID().contains(b.getBookID())) {
+                alreadyBorrowed = true;
+            }
+        }
 
         if (returnDatePicker.getValue() != null) {
             returnDate = returnDatePicker.getValue().toString();
         }
         if (returnDate.equalsIgnoreCase("0000-00-00") || borrower == "" || numberPhone == "") {
             services.alertWarnning("Warning ...", "Please complete all fields ...");
+        }
+        else if(alreadyBorrowed) {
+            services.alertWarnning("Warning ...", "Some Books already exist in your borrow list(Not return yet) ...");
+        }
+        else if(!services.canReturnOn(returnDatePicker.getValue())) {
+            services.alertWarnning("Warning ...", "You can borrow books only for 2 weeks ...");
         }
         else if(limitOfBorrowing == 0) {
             services.alertWarnning("You're out of limitation for borrowing ... !", "You already borrowed 5 books.");
@@ -314,7 +327,7 @@ public class AdminBorrowController {
 
     @FXML
     void handleComedyCategoryBtn(ActionEvent event) {
-        bookListAPI.setBookList(bookListAPI.searchBooks("category", "comedy"));
+        bookListAPI.setBookList(adminBorrowAPI.searchBooks("category", "comedy"));
         tableView.setItems(bookListAPI.getBookList());
     }
 
@@ -337,26 +350,26 @@ public class AdminBorrowController {
 
     @FXML
     void handleScienceCategoryBtn(ActionEvent event) {
-        bookListAPI.setBookList(bookListAPI.searchBooks("category", "science"));
+        bookListAPI.setBookList(adminBorrowAPI.searchBooks("category", "science"));
         tableView.setItems(bookListAPI.getBookList());
     }
 
     @FXML
     void handleSearchField(ActionEvent event) {
         String title = searchField.getText();
-        bookListAPI.setBookList(bookListAPI.searchBooks("title", title));
+        bookListAPI.setBookList(adminBorrowAPI.searchBooks("title", title));
         tableView.setItems(bookListAPI.getBookList());
     }
 
     @FXML
     void handleThoeryCategoryBtn(ActionEvent event) {
-        bookListAPI.setBookList(bookListAPI.searchBooks("category", "thoery"));
+        bookListAPI.setBookList(adminBorrowAPI.searchBooks("category", "thoery"));
         tableView.setItems(bookListAPI.getBookList());
     }
 
     @FXML
     void handlehistoryCategoryBtn(ActionEvent event) {
-        bookListAPI.setBookList(bookListAPI.searchBooks("category", "history"));
+        bookListAPI.setBookList(adminBorrowAPI.searchBooks("category", "history"));
         tableView.setItems(bookListAPI.getBookList());
     }
 
@@ -422,7 +435,7 @@ public class AdminBorrowController {
         pageColumn.setCellValueFactory(new PropertyValueFactory<Books, Integer>("page"));
         bookSelfColumn.setCellValueFactory(new PropertyValueFactory<Books, String>("bookshelf"));
 
-        bookListAPI.setBookList(bookListAPI.searchBooks("title", ""));
+        bookListAPI.setBookList(adminBorrowAPI.searchBooks("title", ""));
         tableView.setItems(bookListAPI.getBookList());
     }
 

@@ -2,9 +2,11 @@ package Controllers;
 
 import API.AdminBorrowListAPI;
 import API.Borrows;
+import API.StudentBorrowAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -115,6 +117,7 @@ public class AdminBorrowListController {
 
     @FXML
     void handleClearSearch(ActionEvent event) {
+        searchField.setText("");
         adminBorrowListAPI.setBorrowsList(adminBorrowListAPI.getBorrowList("", "", comboText));
     }
 
@@ -130,7 +133,7 @@ public class AdminBorrowListController {
             String studentID = selectedBorrows.getBorrower();
             adminBorrowListAPI.returnBook(bookID, studentID);
             selectedBorrows = null;
-            handleClearSearch(event);
+            handleSearchField(event);
         }
         else {
             services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");

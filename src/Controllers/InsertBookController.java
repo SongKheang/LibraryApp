@@ -134,18 +134,25 @@ public class InsertBookController {
         String qualityText = quantityField.getText();
         String bookshelf = booksheltField.getText();
         String bookCoverPath = services.getPathImage(bookCover.getImage());
-        int quantity = Integer.parseInt(qualityText);
+
+        if(bookCoverPath.equals("file:/C:/Users/user/AppData/Roaming/Code/User/workspaceStorage/5571cae77d9f83bb0d1ba296165637b9/redhat.java/jdt_ws/LibraryApp_VENDara_b7016c9/bin/pages/images/default-book.png")) {
+            bookCoverPath = "/BookCover/default-book.png";
+        }
 
         int page = 0;
         int year = 0;
+        int quantity = 0;
 
-        if(pageText != "" && yearText != "") {
+        if(services.isNumber(pageText) && services.isNumber(yearText) && services.isNumber(qualityText)) {
             page = Integer.parseInt(pageText);
             year = Integer.parseInt(yearText);
+            quantity = Integer.parseInt(qualityText);
+        } else {
+            services.alertWarnning("Wrong Input", "Please check Year/Page/Quality again.");
         }
 
         if (title == "" || author == "" || quality == "" || quantity == 0 || bookshelf == "") {
-            services.alertWarnning("Complete problem", "Please complete all inportances Info");
+            services.alertWarnning("Complete problem", "Please complete all important Info");
         } else if (title != "" && author != "" && quality != "" && quantity != 0 && bookshelf != "") {
             books = new Books(title, author, year, Category, page, quality, bookshelf, quantity, bookCoverPath);
             insertBookAPI.insertBook(books);

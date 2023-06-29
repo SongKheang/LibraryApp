@@ -1,5 +1,6 @@
 package Controllers;
 
+import API.AccountAPI;
 import API.StudentSignInAPI;
 import API.Students;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ public class StudentSignInController {
     Services services = new Services();
     Students students;
     StudentSignInAPI studentSignInAPI = new StudentSignInAPI();
+    AccountAPI accountAPI = new AccountAPI();
 
     @FXML
     private Button SignInBtn;
@@ -56,7 +58,10 @@ public class StudentSignInController {
         String studentPassword = studentPasswordField.getText();
         String repassword = studentRePasswordField.getText();
 
-        if(!repassword.equals(studentPassword) ) {
+        if(accountAPI.existID("students", "studentID", studentID)) {
+            services.alertWarnning("Wanning", "Student ID already existed an account ...!");
+        }
+        else if(!repassword.equals(studentPassword) ) {
             services.alertWarnning("Incorrect Password", "Please re-input password ...!");
             studentPasswordField.setText("");
             studentRePasswordField.setText("");

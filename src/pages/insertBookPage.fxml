@@ -87,7 +87,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                         </Text>
-                        <Text layoutX="340.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qaulity">
+                        <Text layoutX="340.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quality">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>
@@ -97,7 +97,7 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Text layoutX="340.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qauntity">
+                        <Text layoutX="340.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>

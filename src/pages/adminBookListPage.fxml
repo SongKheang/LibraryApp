@@ -85,7 +85,7 @@
                         </Group>
                         <Group layoutX="444.0" layoutY="119.0">
                            <children>
-                              <Button fx:id="thoeryCategoryBtn" mnemonicParsing="false" onAction="#handleThoeryCategoryBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 5;" text="Thoery                " textFill="#00275c">
+                              <Button fx:id="thoeryCategoryBtn" mnemonicParsing="false" onAction="#handleThoeryCategoryBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 5;" text="Theory                " textFill="#00275c">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -124,13 +124,13 @@
                         </Text>
                         <TableView fx:id="tableView" editable="true" layoutX="23.0" layoutY="243.0" onMouseClicked="#selectItem" prefHeight="356.0" prefWidth="828.0" style="-fx-background-color: #BDE5ED; -fx-background-radius: 5;">
                           <columns>
-                            <TableColumn fx:id="bookIdColumn" prefWidth="100.0" text="ID" />
-                            <TableColumn fx:id="titleColumn" prefWidth="150.0" text="Title" />
+                            <TableColumn fx:id="bookIdColumn" prefWidth="40.0" text="ID" />
+                            <TableColumn fx:id="titleColumn" prefWidth="200.0" text="Title" />
                               <TableColumn fx:id="authorColumn" prefWidth="150.0" text="Author" />
-                              <TableColumn fx:id="qualityColumn" prefWidth="120.0" text="Qaulity" />
-                              <TableColumn fx:id="qauntityColumn" prefWidth="100.0" text="Qauntity" />
-                              <TableColumn fx:id="remainColumn" prefWidth="100.0" text="Remain" />
-                              <TableColumn fx:id="bookSelfColumn" prefWidth="110.0" text="Bookshelf" />
+                              <TableColumn fx:id="qualityColumn" prefWidth="100.0" text="Quality" />
+                              <TableColumn fx:id="qauntityColumn" prefWidth="100.0" text="Quantity" />
+                              <TableColumn fx:id="remainColumn" prefWidth="100.0" text="Remaining" />
+                              <TableColumn fx:id="bookSelfColumn" prefWidth="140.0" text="Bookshelf" />
                           </columns>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -157,7 +157,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="deleteBook" layoutX="493.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleDeleteBook" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: red; -fx-background-radius: 15;" text="Delete         " textFill="WHITE">
+                        <Button fx:id="deleteBook" layoutX="493.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleDeleteBook" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: red; -fx-background-radius: 15;" text="Delete" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman" size="15.0" />
                            </font>
@@ -165,7 +165,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ComboBox fx:id="categoryComboBox" layoutX="74.0" layoutY="13.0" onAction="#haddleCategoryComboBox" prefWidth="150.0" promptText="Category" />
+                        <ComboBox fx:id="categoryComboBox" layoutX="57.0" layoutY="9.0" onAction="#haddleCategoryComboBox" prefHeight="33.0" prefWidth="165.0" promptText="Category" style="-fx-background-color: white; -fx-border-color: #BCBCBC;" />
                         <Button fx:id="editBookBtn" layoutX="608.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleEditBookBtn" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 15;" text="Edit" textFill="#00275c">
                            <font>
                               <Font name="Times New Roman" size="15.0" />

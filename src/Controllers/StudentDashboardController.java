@@ -3,6 +3,7 @@ package Controllers;
 import API.AdminBorrowListAPI;
 import API.Borrows;
 import API.StudentDashboardAPI;
+import API.StudentInfoAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -86,7 +87,7 @@ public class StudentDashboardController {
 
     @FXML
     void handleEditBtn(ActionEvent event) {
-
+        services.openPage(event, "/pages/studentEditInfoPage.fxml");
     }
 
     @FXML
@@ -101,15 +102,15 @@ public class StudentDashboardController {
 
     @FXML
     void handleReturnBookBtn(ActionEvent event) {
-        if(selectedBorrows != null) {
-            int bookID = selectedBorrows.getBookID();
-            adminBorrowListAPI.returnBook(bookID, studentID);
-            selectedBorrows = null;
-            handleClearSearch(event);
-        }
-        else {
-            services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
-        }
+        // if(selectedBorrows != null) {
+        //     int bookID = selectedBorrows.getBookID();
+        //     adminBorrowListAPI.returnBook(bookID, studentID);
+        //     selectedBorrows = null;
+        //     handleClearSearch(event);
+        // }
+        // else {
+        //     services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
+        // }
     }
 
     String comboText = "No";
@@ -143,7 +144,7 @@ public class StudentDashboardController {
     Borrows selectedBorrows;
     @FXML
     void selectItem(MouseEvent event) {
-        if (event.getClickCount() >= 1) {
+        if (event.getClickCount() > 0) {
             TableView.TableViewSelectionModel<Borrows> selectionModel = tableView.getSelectionModel();
             selectedBorrows = selectionModel.getSelectedItem();
         }
@@ -154,6 +155,7 @@ public class StudentDashboardController {
         showListBook();
         setReturnComboBox();
         studentName.setText(studentID);
+        studentName.setText(studentInfoAPI.getStudentInfo(LogInController.userID).getStudentName());
     }
 
     public void showListBook() {
@@ -174,5 +176,7 @@ public class StudentDashboardController {
         ObservableList<String> list = FXCollections.observableArrayList("All", "Is Borrowing", "Returned");
         returnComboBox.setItems(list);
     }
+
+    StudentInfoAPI studentInfoAPI = new StudentInfoAPI();
 
 }

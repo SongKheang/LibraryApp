@@ -28,6 +28,7 @@ public class StudentExploreAPI {
     public StudentExploreAPI() {
         conn = DatabaseConnection.conn();
         bookList = FXCollections.observableArrayList();
+        borrowedBookID = FXCollections.observableArrayList();
     }
 
     public void borrowBook(ObservableList<Books> cartList, String studentID, String borrowDate, String returnDate, String isReturn) {
@@ -61,18 +62,24 @@ public class StudentExploreAPI {
 
     public int getNumberOfBookStudentBorrow(String studentID) {
         int count = 0;
-        String sql = "SELECT COUNT(borrower) from borrowlist where borrower LIKE '" + studentID + "' and isReturned = '0'";
+        String sql = "SELECT bookID from borrowlist where borrower LIKE '" + studentID + "' and isReturned = '0'";
         try {
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
-            if(rs.next()) {
-                count = rs.getInt(1);
-                return count;
+            while(rs.next()) {
+                count++;
+                borrowedBookID.add(rs.getInt("bookID"));
             }
         } catch (Exception e) {
             System.out.println(e);
         }
         return count;
+    }
+
+    private ObservableList<Integer> borrowedBookID;
+
+    public ObservableList<Integer> getBorrowedBookID() {
+        return borrowedBookID;
     }
 
     

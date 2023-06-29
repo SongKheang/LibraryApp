@@ -70,7 +70,15 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="deleteStudentBtn" layoutX="718.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleDeleteStudentBtn" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: red; -fx-background-radius: 20;" text="Delete Account" textFill="WHITE">
+                        <Button fx:id="ResetPasswordBtn" layoutX="718.0" layoutY="77.0" mnemonicParsing="false" onAction="#handelresetPasswordBtn" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 20;" text="Reset Password" textFill="#27374d">
+                           <font>
+                              <Font name="Times New Roman Bold" size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="deleteStudentBtn" layoutX="582.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleDeleteStudentBtn" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: red; -fx-background-radius: 20;" text="Delete Account" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman Bold" size="15.0" />
                            </font>
@@ -95,7 +103,7 @@
                         </Button>
                         <Text fx:id="studentName" layoutX="10.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" textAlignment="CENTER" wrappingWidth="171.4366455078125">
                            <font>
-                              <Font name="Script MT Bold" size="16.0" />
+                              <Font name="Times New Roman" size="16.0" />
                            </font>
                         </Text>
                         <Button fx:id="listBorrowBtn" layoutY="163.0" mnemonicParsing="false" onAction="#handlelistBorrowBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED; -fx-background-radius: 0;" text="List Borrow">
@@ -106,7 +114,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="studentInfoBtn" layoutY="209.0" mnemonicParsing="false" onAction="#handleStudentInfoBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #27374D;" text="Students Info" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="studentInfoBtn" layoutY="209.0" mnemonicParsing="false" onAction="#handleStudentInfoBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #27374D; -fx-background-radius: 0;" text="Students Info" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>

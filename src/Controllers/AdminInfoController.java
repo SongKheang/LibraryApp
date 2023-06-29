@@ -4,7 +4,10 @@ import API.AdminInfoAPI;
 import API.Students;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -69,18 +72,24 @@ public class AdminInfoController {
 
     @FXML
     void handleBorrowBookBtn(ActionEvent event) {
-
+        services.openPage(event, "/page/adminBorrowPage.fxml");
     }
 
     @FXML
     void handleDeleteStudentBtn(ActionEvent event) {
-        String adminID = selectedStudent.getStudentID();
         if (selectedStudent != null) {
-            adminInfoAPI.deleteAdmin(adminID);
-            adminInfoAPI.setStudentList(adminInfoAPI.getAdminList());
-            selectedStudent = null;
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Delete Account");
+            alert.setHeaderText("Do you really want to delete this admin account?");
+            alert.setResult(ButtonType.CANCEL);
+            alert.showAndWait();
+            if (alert.getResult().equals(ButtonType.OK)) {
+                adminInfoAPI.deleteAdmin(selectedStudent.getStudentID());
+                adminInfoAPI.getAdminList();
+                selectedStudent = null;
+            }
         } else {
-            services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
+            services.alertWarnning("No Book Selected!", "You need to select a book in the list first ...");
         }
     }
 
@@ -134,8 +143,7 @@ public class AdminInfoController {
         studentNameCol.setCellValueFactory(new PropertyValueFactory<Students, String>("studentName"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Students, String>("studentPhone"));
 
-        adminInfoAPI.setStudentList(adminInfoAPI.getAdminList());
-        tableView.setItems(adminInfoAPI.getStudentList());
+        tableView.setItems(adminInfoAPI.getAdminList());
     }
 
 }

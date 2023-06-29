@@ -1,11 +1,13 @@
 package Controllers;
 
+import API.AccountAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class HomepageController {
     Services services = new Services();
+    AccountAPI accountAPI = new AccountAPI();
 
     @FXML
     private Button aboutMeBtn;
@@ -23,8 +25,13 @@ public class HomepageController {
 
     @FXML
     void handleAdminBtn(ActionEvent event) {
-        LogInController.role = "admins";
-        services.openPage(event,"/pages/logInPage.fxml");
+        if(accountAPI.isAdminExist()) {
+            LogInController.role = "admins";
+            services.openPage(event,"/pages/logInPage.fxml");
+        }
+        else {
+            services.openPage(event,"/pages/adminSignInPage.fxml");
+        }
     }
 
     @FXML

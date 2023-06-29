@@ -1,10 +1,14 @@
 package Controllers;
 
 import API.AdminInfoAPI;
+import API.StudentExploreAPI;
 import API.Students;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -16,7 +20,11 @@ import javafx.scene.text.Text;
 public class AdminStudentInfoController {
 
     AdminInfoAPI adminInfoAPI = new AdminInfoAPI();
+    StudentExploreAPI studentExploreAPI = new StudentExploreAPI();
     Services services = new Services();
+    @FXML
+    private Button handelresetPasswordBtn;
+
     @FXML
     private Button adminInfo;
 
@@ -77,18 +85,48 @@ public class AdminStudentInfoController {
 
     @FXML
     void handleClearSearch(ActionEvent event) {
-
+        searchField.setText("");
+        adminInfoAPI.getStudentList("");
+        handleSearchField(event);
+    }
+    @FXML
+    void handelresetPasswordBtn(ActionEvent event) {
+        if (selectedStudent != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Reset Password");
+            alert.setHeaderText("Student's password will reset to Student's ID, Do you really want to Reset?");
+            alert.setResult(ButtonType.CANCEL);
+            alert.showAndWait();
+            if (alert.getResult().equals(ButtonType.OK)) {
+                adminInfoAPI.resetStudentPassword(selectedStudent.getStudentID());
+                adminInfoAPI.setStudentList(adminInfoAPI.getStudentList(""));
+                selectedStudent = null;
+            }
+        }
+        else {
+            services.alertWarnning("No Student Selected", "You need to select student in the list first ...");
+        }
     }
 
     @FXML
     void handleDeleteStudentBtn(ActionEvent event) {
-        String studentID = selectedStudent.getStudentID();
-        if (selectedStudent != null) {
-            adminInfoAPI.deleteStudent(studentID);
-            adminInfoAPI.setStudentList(adminInfoAPI.getStudentList());
-            selectedStudent = null;
-        } else {
-            services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
+        if(selectedStudent == null) {
+            services.alertWarnning("No Student Selected", "You need to select student in the list first ...");
+        }
+        else if (selectedStudent != null && studentExploreAPI.getNumberOfBookStudentBorrow(selectedStudent.getStudentID()) == 0) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Comfirmation");
+            alert.setHeaderText("Do you really want to delete this student info?");
+            alert.setResult(ButtonType.CANCEL);
+            alert.showAndWait();
+            if (alert.getResult().equals(ButtonType.OK)) {
+                adminInfoAPI.deleteStudent(selectedStudent.getStudentID());
+                adminInfoAPI.setStudentList(adminInfoAPI.getStudentList(""));
+                selectedStudent = null;
+            }
+        }
+        else if(studentExploreAPI.getNumberOfBookStudentBorrow(selectedStudent.getStudentID()) > 0) {
+            services.alertWarnning("Student Can't Be Delete", "Student haven't returned all borrowed books yet!");
         }
     }
 
@@ -109,7 +147,8 @@ public class AdminStudentInfoController {
 
     @FXML
     void handleSearchField(ActionEvent event) {
-
+        String searchText = searchField.getText();
+        adminInfoAPI.getStudentList(searchText);
     }
 
     @FXML
@@ -121,7 +160,9 @@ public class AdminStudentInfoController {
     void handlelistBorrowBtn(ActionEvent event) {
         services.openPage(event, "/pages/adminBorrowListPage.fxml");
     }
+
     Students selectedStudent;
+
     @FXML
     void selectItem(MouseEvent event) {
         if (event.getClickCount() >= 1) {
@@ -141,7 +182,7 @@ public class AdminStudentInfoController {
         studentNameCol.setCellValueFactory(new PropertyValueFactory<Students, String>("studentName"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Students, String>("studentPhone"));
 
-        tableView.setItems(adminInfoAPI.getStudentList());
+        tableView.setItems(adminInfoAPI.getStudentList(""));
     }
 
 }

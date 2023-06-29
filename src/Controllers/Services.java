@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.io.File;
+import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +33,12 @@ public class Services {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle(title);
         alert.setHeaderText(text);
-
+        
         alert.showAndWait();
     }
 
     public void alertSuccess(String text) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText(text);
 
@@ -78,5 +79,27 @@ public class Services {
         path = currentWorkingDir + path;
         Image image = new Image(path);
         return image;
+    }
+
+    public boolean canReturnOn(LocalDate returnDate) {
+        LocalDate now = LocalDate.now();
+        if(returnDate.isAfter(now.minusDays(1)) && returnDate.isBefore(now.plusDays(14))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isNumber(String text) {
+        if(text == "") {
+            return false;
+        }
+        for(int i=0; i<text.length(); i++) {
+            if(text.charAt(i) < 48 || text.charAt(i) > 57) {
+                return false;
+            }
+        }
+        return true;
     }
 }

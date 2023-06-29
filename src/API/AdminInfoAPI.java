@@ -59,10 +59,13 @@ public class AdminInfoAPI {
         }
     }
 
-    public ObservableList<Students> getStudentList() {
+    public ObservableList<Students> getStudentList(String searchText) {
         studentList.clear();
         try {
             String sql = "Select * from students";
+            if(searchText != "") {
+                sql += " WHERE studentName LIKE '%" + searchText + "%' OR studentID LIKE '%" + searchText + "%'";
+            }
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
             while(rs.next()) {
@@ -85,6 +88,19 @@ public class AdminInfoAPI {
             int row = stmt.executeUpdate();
             if( row > 0) {
                 services.alertSuccess("Delete successfully ...");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void resetStudentPassword(String studentID) {
+        try {
+            String sql = "Update students SET studentPassword = '"+ studentID +"' where studentID = '" + studentID + "'";
+            stmt = conn.prepareStatement(sql);
+            int row = stmt.executeUpdate();
+            if( row > 0) {
+                services.alertSuccess("Password reset successfully ...");
             }
         } catch (Exception e) {
             System.out.println(e);

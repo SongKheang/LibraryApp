@@ -64,12 +64,12 @@
                               <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="184.0" prefHeight="41.0" prefWidth="250.0" promptText="XXXXXXXX" style="-fx-background-color: #DDE6ED; -fx-background-radius: 4; -fx-border-color: #DDE6ED  #DDE6ED black  #DDE6ED;" />
                               <AnchorPane fx:id="registerPane" layoutX="8.0" layoutY="443.0" prefHeight="74.0" prefWidth="302.0">
                                  <children>
-                                    <Text fill="#242043" layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Didn't You An Have Account Yet ?" wrappingWidth="217.85116481781006">
+                                    <Text fill="#242043" layoutX="24.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet ?">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Text>
-                                    <Button fx:id="registerBtn" layoutX="176.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleRegisterBtn" prefHeight="34.0" prefWidth="111.0" style="-fx-background-radius: 20; -fx-border-radius: 15; -fx-background-color: #DDE6ED;" text="Register Here!" textAlignment="RIGHT" textFill="#2100ff">
+                                    <Button fx:id="registerBtn" layoutX="176.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleRegisterBtn" prefHeight="34.0" prefWidth="111.0" style="-fx-background-radius: 20; -fx-border-radius: 15; -fx-background-color: #DDE6ED;" text="Register here!" textAlignment="RIGHT" textFill="#2100ff">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>

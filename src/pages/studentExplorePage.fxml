@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -86,7 +87,7 @@
                         </Group>
                         <Group layoutX="444.0" layoutY="119.0">
                            <children>
-                              <Button fx:id="thoeryCategoryBtn" mnemonicParsing="false" onAction="#handleThoeryCategoryBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 5;" text="Thoery                " textFill="#00275c">
+                              <Button fx:id="thoeryCategoryBtn" mnemonicParsing="false" onAction="#handleThoeryCategoryBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 5;" text="Theory                " textFill="#00275c">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -125,13 +126,14 @@
                         </Text>
                         <TableView fx:id="tableView" editable="true" layoutX="23.0" layoutY="243.0" onMouseClicked="#selectItem" prefHeight="356.0" prefWidth="828.0" style="-fx-background-color: #BDE5ED; -fx-background-radius: 5;">
                           <columns>
-                            <TableColumn fx:id="bookIdColumn" prefWidth="72.00001525878906" text="ID" />
-                            <TableColumn fx:id="titleColumn" prefWidth="153.60000610351562" text="Title" />
-                              <TableColumn fx:id="authorColumn" prefWidth="170.4000244140625" text="Author" />
-                              <TableColumn fx:id="yearColumn" minWidth="8.79998779296875" prefWidth="84.0" text="Year" />
-                              <TableColumn fx:id="categoryColumn" prefWidth="156.0" text="Category" />
-                              <TableColumn fx:id="pageColumn" prefWidth="63.199951171875" text="Page" />
-                              <TableColumn fx:id="bookSelfColumn" prefWidth="129.5999755859375" text="Bookshelf" />
+                            <TableColumn fx:id="bookIdColumn" prefWidth="40.0" text="ID" />
+                            <TableColumn fx:id="titleColumn" prefWidth="200.0" text="Title" />
+                              <TableColumn fx:id="authorColumn" prefWidth="150.0" text="Author" />
+                              <TableColumn fx:id="yearColumn" minWidth="8.79998779296875" prefWidth="70.0" text="Year" />
+                              <TableColumn fx:id="categoryColumn" prefWidth="100.0" text="Category" />
+                              <TableColumn fx:id="pageColumn" prefWidth="70.0" text="Page" />
+                              <TableColumn fx:id="remainColumn" prefWidth="100.0" text="Remaining" />
+                              <TableColumn fx:id="bookSelfColumn" prefWidth="95.0" text="Bookshelf" />
                           </columns>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -158,7 +160,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button layoutX="606.0" layoutY="202.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 15;" text="Cart      " textFill="#00275c">
+                        <Button fx:id="addToCartBtnUI" layoutX="606.0" layoutY="202.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #B8FFAB; -fx-background-radius: 15;" text="Cart      " textFill="#00275c">
                            <font>
                               <Font name="Times New Roman" size="15.0" />
                            </font>
@@ -191,8 +193,8 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ComboBox fx:id="categoryComboBox" layoutX="68.0" layoutY="14.0" onAction="#haddleCategoryComboBox" prefWidth="150.0" promptText="Category" />
-                        <AnchorPane fx:id="cartPane" prefHeight="615.0" prefWidth="872.0" style="-fx-background-color: white;" visible="false">
+                        <ComboBox fx:id="categoryComboBox" layoutX="65.0" layoutY="8.0" onAction="#haddleCategoryComboBox" prefHeight="33.0" prefWidth="150.0" promptText="Category" style="-fx-background-color: white; -fx-border-color: #BCBCBC;" />
+                        <AnchorPane fx:id="cartPane" prefHeight="615.0" prefWidth="872.0" style="-fx-background-color: white;">
                            <children>
                               <ImageView fitHeight="41.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="26.0">
                                  <image>
@@ -263,6 +265,7 @@
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
                               </Text>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="424.0" layoutY="205.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="152.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="bookDetailsPane" layoutX="10.0" layoutY="10.0" prefHeight="615.0" prefWidth="874.0" style="-fx-background-color: white;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -431,7 +434,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="editeInfoBtn" layoutY="209.0" mnemonicParsing="false" onAction="#handleEditeBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED;" text="Edite Info" textAlignment="CENTER">
+                        <Button fx:id="editeInfoBtn" layoutY="209.0" mnemonicParsing="false" onAction="#handleEditeBtn" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: #DDE6ED;" text="Edit Info" textAlignment="CENTER">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>

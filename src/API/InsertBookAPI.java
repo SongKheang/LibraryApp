@@ -35,11 +35,7 @@ public class InsertBookAPI {
             stmt.setInt(9, book.getQuantity());
             stmt.setString(10, book.getBookCoverPath());
 
-            int row = stmt.executeUpdate();
-
-            if(row > 0) {
-                System.out.println("Insert work perfect");
-            }
+            stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
