@@ -102,4 +102,11 @@ public class Services {
         }
         return true;
     }
+
+    public boolean isNotAllSpace(String text) {
+        if(text.replace(" ", "") == "") {
+            return false;
+        }
+        return true;
+    }
 }
