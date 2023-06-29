@@ -63,8 +63,8 @@ public class AdiminSignInController {
             rePasswordField.setText("");
         }
         else {
-            if(studentID == "" || studentName == "" || studentPhone == "" || studentPassword == "") {
-                services.alertWarnning("Complete Problems", "Please complete all fields...");
+            if(studentID == "" || studentName == "" || studentPhone == "" || studentPassword == "" || !services.isNotAllSpace(studentID) || !services.isNotAllSpace(studentName) || !services.isNotAllSpace(studentPhone) || !services.isNotAllSpace(studentPassword) ) {
+                services.alertWarnning("Complete Problems", "All fields must be filled...");
             }
             else if(studentID != "" && studentName != "" && studentPhone != "" && studentPassword != "") {
                 students = new Students(studentID, studentName, studentPhone, studentPassword);
