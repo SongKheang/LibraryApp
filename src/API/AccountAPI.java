@@ -73,7 +73,44 @@ public class AccountAPI {
             System.out.println(e);
             return false;
         }
+
     }
+
+    public boolean existID(String table, String columnID, String ID) {
+        try {
+            String searchSQL = "SELECT * FROM " + table + " WHERE " + columnID + " = '" + ID + "'";
+            stmt = conn.prepareStatement(searchSQL);
+            rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean isAdminExist() {
+        try {
+            String searchSQL = "SELECT * FROM admins";
+            stmt = conn.prepareStatement(searchSQL);
+            rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+
 
     
 
