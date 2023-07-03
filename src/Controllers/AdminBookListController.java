@@ -225,7 +225,7 @@ public class AdminBookListController {
 
     @FXML
     void handleLogOut(ActionEvent event) {
-
+        services.openPage(event, "/pages/homepage.fxml");
     }
 
     @FXML
