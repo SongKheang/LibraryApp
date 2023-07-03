@@ -213,8 +213,7 @@ public class StudentExploreController {
             if (bookExist) {
                 services.alertWarnning("Warning", "Books already exist in cart ...");
 
-            }
-            else if (limitOfBorrowing - cartList.size() > 0) {
+            } else if (limitOfBorrowing - cartList.size() > 0) {
                 books = new Books(selectedBook.getBookID(), selectedBook.getTitle(), selectedBook.getAuthor(),
                         selectedBook.getYear(), selectedBook.getCategory(), selectedBook.getPage(),
                         selectedBook.getBookshelf());
@@ -223,10 +222,10 @@ public class StudentExploreController {
                 setOpacityAddToCartBtnUI();
                 cartNumber.setText(Integer.toString(cartList.size()));
             } else {
-                services.alertWarnning("Can not Borrow", "You're out of limitation for borrowing ... !");
+                services.alertWarnning("Can not Borrow", "You've reached the limitation for borrowing ... !");
             }
         } else {
-            services.alertWarnning("Warning", "Please select book first ...");
+            services.alertWarnning("Warning", "Please select a book first ...");
         }
     }
 
@@ -247,10 +246,10 @@ public class StudentExploreController {
         LocalDate now = LocalDate.now();
         String borrowDate = now.toString();
         String returnDate = "0000-00-00";
-        boolean alreadyBorrowed = false; 
+        boolean alreadyBorrowed = false;
 
-        for(Books b : cartList) {
-            if(studentExploreAPI.getBorrowedBookID().contains(b.getBookID())) {
+        for (Books b : cartList) {
+            if (studentExploreAPI.getBorrowedBookID().contains(b.getBookID())) {
                 alreadyBorrowed = true;
             }
         }
@@ -260,14 +259,11 @@ public class StudentExploreController {
         }
         if (returnDate.equalsIgnoreCase("0000-00-00")) {
             services.alertWarnning("Warning ...", "Please pick return date ...");
-        } 
-        else if(alreadyBorrowed) {
+        } else if (alreadyBorrowed) {
             services.alertWarnning("Warning ...", "Some Books already exist in your borrow list(Not return yet) ...");
-        }
-        else if(!services.canReturnOn(returnDatePicker.getValue())) {
-            services.alertWarnning("Warning ...", "You can borrow book only for 2 weeks ...");
-        }
-        else {
+        } else if (!services.canReturnOn(returnDatePicker.getValue())) {
+            services.alertWarnning("Warning ...", "You can borrow books only for 2 weeks ...");
+        } else {
             studentExploreAPI.borrowBook(cartList, studentID, borrowDate, returnDate, "0");
             cartList.clear();
             tableViewCart.setItems(null);
@@ -301,7 +297,7 @@ public class StudentExploreController {
     @FXML
     void handleDeleteCartBtn(ActionEvent event) {
         if (selectedIndex == -1) {
-            services.alertWarnning("Wanning", "Please select book in the list first ...");
+            services.alertWarnning("Warning", "Please select book in the list first ...");
         } else {
             int index = selectedIndex;
             cartList.remove(index);
@@ -340,7 +336,7 @@ public class StudentExploreController {
 
     @FXML
     void handleThoeryCategoryBtn(ActionEvent event) {
-        bookListAPI.setBookList(bookListAPI.searchBooks("category", "thoery"));
+        bookListAPI.setBookList(bookListAPI.searchBooks("category", "theory"));
         tableView.setItems(bookListAPI.getBookList());
     }
 
@@ -383,7 +379,7 @@ public class StudentExploreController {
         StudentInfoAPI studentInfoAPI = new StudentInfoAPI();
         studentName.setText(studentInfoAPI.getStudentInfo(LogInController.userID).getStudentName());
         setOpacityAddToCartBtnUI();
-    
+
     }
 
     public void showListBook() {
@@ -435,10 +431,9 @@ public class StudentExploreController {
     }
 
     void setOpacityAddToCartBtnUI() {
-        if(selectedBook == null) {
+        if (selectedBook == null) {
             addToCartBtnUI.setOpacity(0.7);
-        }
-        else {
+        } else {
             addToCartBtnUI.setOpacity(1);
         }
     }
