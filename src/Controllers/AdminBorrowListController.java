@@ -1,6 +1,9 @@
 package Controllers;
 
+import java.time.LocalDate;
+
 import API.AdminBorrowListAPI;
+import API.Books;
 import API.Borrows;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -131,7 +134,13 @@ public class AdminBorrowListController {
             String studentID = selectedBorrows.getBorrower();
             adminBorrowListAPI.returnBook(bookID, studentID);
             selectedBorrows = null;
-            handleSearchField(event);
+            if (returnComboBox.getValue().equals("Late Return")) {
+                comboText = "No";
+                adminBorrowListAPI.setBorrowsList(adminBorrowListAPI.getBorrowList(" where borrowlist.returnDate < '" + LocalDate.now() + "'"," where borroweroutside.returnDate < '" + LocalDate.now() + "'", comboText));
+            }
+            else {
+                handleSearchField(event);
+            }
         }
         else {
             services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
@@ -158,14 +167,24 @@ public class AdminBorrowListController {
     void handleReturnComboBox(ActionEvent event) {
         if(returnComboBox.getValue().equals("Is Borrowing")) {
             comboText = "No";
+            returnBookBtn.setVisible(true);
+            handleSearchField(event);
         }
         else if(returnComboBox.getValue().equals("Returned")) {
             comboText = "Yes";
+            returnBookBtn.setVisible(false);
+            handleSearchField(event);
+        }
+        else if(returnComboBox.getValue().equals("Late Return")) {
+            comboText = "No";
+            adminBorrowListAPI.setBorrowsList(adminBorrowListAPI.getBorrowList(" where borrowlist.returnDate < '" + LocalDate.now() + "'"," where borroweroutside.returnDate < '" + LocalDate.now() + "'", comboText));
         }
         else {
             comboText = "All";
+            returnBookBtn.setVisible(true);
+            handleSearchField(event);
         }
-        handleSearchField(event);
+        
 
     }
 
@@ -174,6 +193,7 @@ public class AdminBorrowListController {
         showListBook();
         setReturnComboBox();
         studentName.setText(LogInController.userID);
+        returnBookBtn.setVisible(true);
     }
 
     public void showListBook() {
@@ -190,7 +210,7 @@ public class AdminBorrowListController {
     }
 
     public void setReturnComboBox() {
-        ObservableList<String> list = FXCollections.observableArrayList("All", "Is Borrowing", "Returned");
+        ObservableList<String> list = FXCollections.observableArrayList("All", "Is Borrowing", "Returned", "Late Return");
         returnComboBox.setItems(list);
     }
 

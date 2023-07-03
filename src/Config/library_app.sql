@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2023 at 03:04 AM
+-- Generation Time: Jun 30, 2023 at 04:22 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -39,6 +39,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`adminID`, `adminName`, `adminPhone`, `adminPassword`) VALUES
+(' hg', 'hg', ' hg', ' hg'),
+('123', 'Jork', '123', '123'),
 ('e20200469', 'VEN Dara', '0963180249', '123');
 
 -- --------------------------------------------------------
@@ -67,20 +69,20 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`bookID`, `title`, `author`, `year`, `category`, `page`, `quality`, `bookshelf`, `quantity`, `remain`, `bookCoverPath`) VALUES
 (20, 'The old man and the sea', 'Ernest Hemmingway', 1856, 'Novel', 360, 'old', 'A10-01', 7, 5, '/BookCover/one piece 1.jpg'),
-(22, 'History Of Angkor', 'David Chandier', 2012, 'Histoty', 200, 'new', 'A12-10', 2, 1, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
-(30, 'Music Theory', 'Jonh Jamsion', 2020, 'Thoery', 100, 'meduim', 'B12-10', 10, 10, '/BookCover/41gUCpWSwoL.jpg'),
+(22, 'History Of Angkor', 'David Chandier', 2012, 'History', 200, 'new', 'A12-10', 2, 1, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
+(30, 'Music Theory', 'Jonh Jamsion', 2020, 'Thoery', 100, 'meduim', 'B12-10', 10, 9, '/BookCover/41gUCpWSwoL.jpg'),
 (31, 'Albert: Father of Modern Science', 'Jam chaler', 2020, 'Science', 400, 'new', 'A01-02', 30, 30, '/BookCover/51jiJbifP5L.jpg'),
 (32, 'World Of Science', 'Tony Stark', 1995, 'Science', 500, 'meduim', 'B12-45', 50, 49, '/BookCover/71KmjQb+UvL._AC_UF1000,1000_QL80_.jpg'),
-(33, 'Wizard Of Electric', 'Nikola Tesla', 1985, 'Science', 500, 'old', 'C11-04', 20, 19, '/BookCover/91g5uc-gtML._AC_UF1000,1000_QL80_.jpg'),
 (34, 'The Jazz Theory', 'Mark Levine', 2021, 'Science', 300, 'new', 'C19-07', 50, 49, '/BookCover/1883217040.jpg'),
-(35, 'A History Of Cambodia - Fourth Edition', 'David Chanler', 2002, 'Histoty', 400, 'new', 'C12-04', 100, 99, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
-(36, 'A Record Of Cambodia', 'Perter harris', 2002, 'Histoty', 500, 'new', 'C12-04', 12, 12, '/BookCover/a_record_of_cambodia.jpg'),
-(37, 'មាលាដូងចិត្ត', 'ញ៉ុក ថែម', 1995, 'Novel', 122, 'new', 'A01-02', 50, 48, '/BookCover/mea_lea_dung_jit.jpg'),
-(38, 'Man of the Time', 'Tesla', 2002, 'Science', 100, 'meduim', 'B11-02', 100, 100, '/BookCover/cvr9780743215367_9780743215367_hr.jpg'),
-(39, 'Earth 2100', 'Septimus Serverus', 2022, 'Thoery', 500, 'new', 'A12-05', 70, 69, '/BookCover/earth2100.jpg'),
-(40, 'Naruto - Jiraiya Tale', 'Misikiko Ovasaki', 2010, 'Comic', 200, 'new', 'A12-04', 50, 50, '/BookCover/Jiraiya Tale.jpg'),
-(41, 'Naruto Vol01', 'Misikiko Ovasaki', 2002, 'Comic', 100, 'new', 'A12-05', 100, 100, '/BookCover/narutoVol1.jpg'),
-(42, 'afwhf', 'fafew', 10, 'afewaf', 10, 'new', 'afsdaw', 10, 10, '/BookCover/default-book.png');
+(35, 'A History Of Cambodia - Fourth Edition', 'David Chanler', 2002, 'History', 400, 'new', 'C12-04', 100, 99, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
+(36, 'A Record Of Cambodia', 'Perter harris', 2002, 'History', 500, 'new', 'C12-04', 12, 12, '/BookCover/a_record_of_cambodia.jpg'),
+(37, 'មាលាដូងចិត្ត២❤️🤣', 'ញ៉ុក ថែម', 1995, 'Novel', 122, 'unreadable', 'A01-02', 10, 47, '/BookCover/mea_lea_dung_jit.jpg'),
+(38, 'Man of the Time', 'Tesla', 2002, 'Science', 100, 'meduim', 'B11-02', 100, 99, '/BookCover/cvr9780743215367_9780743215367_hr.jpg'),
+(39, 'Earth 2100', 'Septimus Serverus', 2022, 'Thoery', 500, 'new', 'A12-05', 70, 68, '/BookCover/earth2100.jpg'),
+(40, 'Naruto - Jiraiya Tale', 'Misikiko Ovasaki', 2010, 'Comic', 200, 'new', 'A12-04', 50, 48, '/BookCover/Jiraiya Tale.jpg'),
+(41, 'Naruto Vol01', 'Misikiko Ovasaki', 2002, 'Comic', 100, 'new', 'A12-05', 100, 99, '/BookCover/narutoVol1.jpg'),
+(43, 'រាមកេរី៍', 'Unknown', 1990, 'Science', 120, 'old', 'A12', 5, 4, '/BookCover/ramayana.jpg'),
+(44, 'One Piece vol1', 'Kavasaki', 2002, 'Comedy', 100, 'new', 'C12', 10, 10, '/BookCover/one piece 1.jpg');
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,12 @@ INSERT INTO `borroweroutside` (`name`, `phone`, `bookID`, `borrowDate`, `returnD
 ('Dara', '0482095435', 35, '2023-06-27', '2023-06-29', 0),
 ('Dara', '0482095435', 37, '2023-06-27', '2023-06-29', 0),
 ('Jonh', '092812527', 39, '2023-06-27', '2023-06-29', 0),
-('Dara', '048294392', 37, '2023-06-27', '2023-06-29', 0);
+('Dara', '048294392', 37, '2023-06-27', '2023-06-29', 0),
+('GG', '33333', 43, '2023-06-29', '2023-07-08', 0),
+('GG', '33333', 40, '2023-06-29', '2023-07-08', 0),
+('GG', '33333', 38, '2023-06-29', '2023-07-08', 0),
+('GG', '33333', 37, '2023-06-29', '2023-07-08', 0),
+('GG', '33333', 30, '2023-06-29', '2023-06-30', 0);
 
 -- --------------------------------------------------------
 
@@ -186,7 +193,12 @@ INSERT INTO `borrowlist` (`bookID`, `borrower`, `borrowDate`, `returnDate`, `isR
 (NULL, '123', '2023-06-24', '2023-07-01', '1'),
 (NULL, '123', '2023-06-24', '2023-07-01', '1'),
 (22, '123', '2023-06-24', '2023-07-01', '1'),
-(22, 'e20200958', '2023-06-24', '2023-07-01', '0');
+(22, 'e20200958', '2023-06-24', '2023-07-01', '0'),
+(43, '456', '2023-06-29', '2023-07-04', '1'),
+(41, '456', '2023-06-29', '2023-07-04', '0'),
+(40, '456', '2023-06-29', '2023-07-04', '0'),
+(39, '456', '2023-06-29', '2023-07-04', '0'),
+(38, '456', '2023-06-29', '2023-07-04', '1');
 
 -- --------------------------------------------------------
 
@@ -207,7 +219,9 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`studentID`, `studentName`, `studentPhone`, `studentPassword`) VALUES
 ('123', 'Hello Yes', '123', '123'),
-('e20200469', 'VEN Dara', '0963180249', '123'),
+('456', '456', '456', '456'),
+('e20200460', 'Dara', 'e20200469', 'e20200469'),
+('e20200469', 'VEN Dara', '0963180249', 'e20200469'),
 ('e20200810', 'ser long', '011285218', '123'),
 ('e20200958', 'Ty Sopheaktra', '092815263', 'Tra092815263');
 
@@ -250,7 +264,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Constraints for dumped tables

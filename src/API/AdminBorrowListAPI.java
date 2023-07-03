@@ -37,7 +37,6 @@ public class AdminBorrowListAPI {
         if (condition != "") {
             sql += condition;
         }
-        
 
         try {
             stmt = conn.prepareStatement(sql);

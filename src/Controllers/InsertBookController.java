@@ -149,6 +149,7 @@ public class InsertBookController {
             quantity = Integer.parseInt(qualityText);
         } else {
             services.alertWarnning("Wrong Input", "Please check Year/Page/Quality again.");
+            return;
         }
 
         if (title == "" || author == "" || quality == "" || quantity == 0 || bookshelf == "") {

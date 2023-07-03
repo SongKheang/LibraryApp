@@ -30,7 +30,7 @@
                <center>
                   <AnchorPane prefHeight="615.0" prefWidth="843.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="aboutMeBtn" layoutX="20.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleAboutMeBtn" prefHeight="46.0" prefWidth="89.0" style="-fx-background-color: white;" text="About Me" textAlignment="RIGHT" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="20.0">
+                        <Button fx:id="aboutMeBtn" layoutX="20.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleAboutMeBtn" opacity="0.0" prefHeight="46.0" prefWidth="89.0" style="-fx-background-color: white;" text="About Me" textAlignment="RIGHT" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="20.0">
                            <font>
                               <Font name="Forte" size="15.0" />
                            </font>
