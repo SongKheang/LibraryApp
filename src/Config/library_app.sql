@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2023 at 04:22 AM
+-- Generation Time: Jul 10, 2023 at 01:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -39,8 +39,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`adminID`, `adminName`, `adminPhone`, `adminPassword`) VALUES
-(' hg', 'hg', ' hg', ' hg'),
-('123', 'Jork', '123', '123'),
+('e12345', 'ABC', '097', '123'),
+('e20200460', 'e20200469', '0963180240', 'e20200469'),
 ('e20200469', 'VEN Dara', '0963180249', '123');
 
 -- --------------------------------------------------------
@@ -68,21 +68,12 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`bookID`, `title`, `author`, `year`, `category`, `page`, `quality`, `bookshelf`, `quantity`, `remain`, `bookCoverPath`) VALUES
-(20, 'The old man and the sea', 'Ernest Hemmingway', 1856, 'Novel', 360, 'old', 'A10-01', 7, 5, '/BookCover/one piece 1.jpg'),
-(22, 'History Of Angkor', 'David Chandier', 2012, 'History', 200, 'new', 'A12-10', 2, 1, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
-(30, 'Music Theory', 'Jonh Jamsion', 2020, 'Thoery', 100, 'meduim', 'B12-10', 10, 9, '/BookCover/41gUCpWSwoL.jpg'),
-(31, 'Albert: Father of Modern Science', 'Jam chaler', 2020, 'Science', 400, 'new', 'A01-02', 30, 30, '/BookCover/51jiJbifP5L.jpg'),
-(32, 'World Of Science', 'Tony Stark', 1995, 'Science', 500, 'meduim', 'B12-45', 50, 49, '/BookCover/71KmjQb+UvL._AC_UF1000,1000_QL80_.jpg'),
-(34, 'The Jazz Theory', 'Mark Levine', 2021, 'Science', 300, 'new', 'C19-07', 50, 49, '/BookCover/1883217040.jpg'),
+(20, 'The old man and the sea', 'Ernest Hemmingway', 1856, 'Novel', 360, 'old', 'A10-01', 7, 6, '/BookCover/one piece 1.jpg'),
+(22, 'History Of Angkor', 'David Chandier', 2012, 'History', 200, 'meduim', 'A12-10', 2, 3, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
+(34, 'The Jazz Theory', 'Mark Levine', 2021, 'Science', 300, 'new', 'C19-07', 50, 51, '/BookCover/1883217040.jpg'),
 (35, 'A History Of Cambodia - Fourth Edition', 'David Chanler', 2002, 'History', 400, 'new', 'C12-04', 100, 99, '/BookCover/a_history_of_cambodia_chandler_david_p_0.jpg'),
 (36, 'A Record Of Cambodia', 'Perter harris', 2002, 'History', 500, 'new', 'C12-04', 12, 12, '/BookCover/a_record_of_cambodia.jpg'),
-(37, 'មាលាដូងចិត្ត២❤️🤣', 'ញ៉ុក ថែម', 1995, 'Novel', 122, 'unreadable', 'A01-02', 10, 47, '/BookCover/mea_lea_dung_jit.jpg'),
-(38, 'Man of the Time', 'Tesla', 2002, 'Science', 100, 'meduim', 'B11-02', 100, 99, '/BookCover/cvr9780743215367_9780743215367_hr.jpg'),
-(39, 'Earth 2100', 'Septimus Serverus', 2022, 'Thoery', 500, 'new', 'A12-05', 70, 68, '/BookCover/earth2100.jpg'),
-(40, 'Naruto - Jiraiya Tale', 'Misikiko Ovasaki', 2010, 'Comic', 200, 'new', 'A12-04', 50, 48, '/BookCover/Jiraiya Tale.jpg'),
-(41, 'Naruto Vol01', 'Misikiko Ovasaki', 2002, 'Comic', 100, 'new', 'A12-05', 100, 99, '/BookCover/narutoVol1.jpg'),
-(43, 'រាមកេរី៍', 'Unknown', 1990, 'Science', 120, 'old', 'A12', 5, 4, '/BookCover/ramayana.jpg'),
-(44, 'One Piece vol1', 'Kavasaki', 2002, 'Comedy', 100, 'new', 'C12', 10, 10, '/BookCover/one piece 1.jpg');
+(39, 'Earth 2100', 'Septimus Serverus', 2022, 'Thoery', 500, 'new', 'A12-05', 70, 68, '/BookCover/earth2100.jpg');
 
 -- --------------------------------------------------------
 
@@ -92,8 +83,8 @@ INSERT INTO `books` (`bookID`, `title`, `author`, `year`, `category`, `page`, `q
 
 CREATE TABLE `borroweroutside` (
   `name` varchar(50) NOT NULL,
+  `bookID` int(11) DEFAULT NULL,
   `phone` varchar(50) NOT NULL,
-  `bookID` int(11) NOT NULL,
   `borrowDate` date NOT NULL,
   `returnDate` date NOT NULL,
   `isReturned` int(11) NOT NULL
@@ -103,42 +94,34 @@ CREATE TABLE `borroweroutside` (
 -- Dumping data for table `borroweroutside`
 --
 
-INSERT INTO `borroweroutside` (`name`, `phone`, `bookID`, `borrowDate`, `returnDate`, `isReturned`) VALUES
-('Dara', '123', 15, '2023-06-21', '2023-06-23', 1),
-('Dara', '123', 14, '2023-06-21', '2023-06-23', 1),
-('Dara', '123', 11, '2023-06-21', '2023-06-23', 1),
-('Dara', '123', 16, '2023-06-21', '2023-06-23', 0),
-('Dara', '123', 15, '2023-06-21', '2023-06-23', 1),
-('Dara', '0963180249', 14, '2023-06-21', '2023-06-24', 1),
-('Dara', '0963180249', 16, '2023-06-22', '2023-06-24', 0),
-('Dara', '0963180249', 15, '2023-06-22', '2023-06-24', 0),
-('Dara', '0963180249', 11, '2023-06-22', '2023-06-24', 1),
-('Dara', '0963180249', 14, '2023-06-22', '2023-06-24', 1),
-('Dara', '0134341243', 15, '2023-06-22', '2023-06-24', 0),
-('Dara', '0134341243', 14, '2023-06-22', '2023-06-24', 1),
-('ffff', '6556', 23, '2023-06-22', '2023-06-24', 1),
-('ffff', '6556', 22, '2023-06-22', '2023-06-24', 1),
-('ffff', '6556', 20, '2023-06-22', '2023-06-24', 1),
-('qq', 'qq', 26, '2023-06-22', '2023-06-23', 0),
-('qq', 'qq', 22, '2023-06-22', '2023-06-24', 1),
-('Dara', '143434', 26, '2023-06-22', '2023-06-21', 0),
-('111', '111', 26, '2023-06-22', '2023-07-05', 0),
-('111', '111', 24, '2023-06-22', '2023-07-05', 0),
-('111', '111', 23, '2023-06-22', '2023-07-05', 0),
-('111', '111', 20, '2023-06-22', '2023-07-05', 0),
-('111', '111', 27, '2023-06-22', '2023-06-29', 0),
-('Dara', '0482095435', 34, '2023-06-27', '2023-06-29', 0),
-('Dara', '0482095435', 33, '2023-06-27', '2023-06-29', 0),
-('Dara', '0482095435', 32, '2023-06-27', '2023-06-29', 0),
-('Dara', '0482095435', 35, '2023-06-27', '2023-06-29', 0),
-('Dara', '0482095435', 37, '2023-06-27', '2023-06-29', 0),
-('Jonh', '092812527', 39, '2023-06-27', '2023-06-29', 0),
-('Dara', '048294392', 37, '2023-06-27', '2023-06-29', 0),
-('GG', '33333', 43, '2023-06-29', '2023-07-08', 0),
-('GG', '33333', 40, '2023-06-29', '2023-07-08', 0),
-('GG', '33333', 38, '2023-06-29', '2023-07-08', 0),
-('GG', '33333', 37, '2023-06-29', '2023-07-08', 0),
-('GG', '33333', 30, '2023-06-29', '2023-06-30', 0);
+INSERT INTO `borroweroutside` (`name`, `bookID`, `phone`, `borrowDate`, `returnDate`, `isReturned`) VALUES
+('Dara', 22, '099999', '2023-07-02', '2023-07-04', 1),
+('Dara', NULL, '099999', '2023-07-02', '2023-07-04', 1),
+('Dara', NULL, '033333', '2023-07-02', '2023-07-05', 1),
+('Dara', 36, '033333', '2023-07-02', '2023-07-05', 1),
+('gg', NULL, '07634234', '2023-07-04', '2023-07-05', 1),
+('yehh', NULL, 'yehh', '2023-07-04', '2023-07-04', 1),
+('Hello', NULL, 'hello', '2023-07-03', '2023-07-04', 1),
+('Hello', 35, 'hello', '2023-07-06', '2023-07-06', 1),
+('Jam Bond', NULL, '03344', '2023-07-03', '2023-07-08', 1),
+('Jam Bond', NULL, '03344', '2023-07-03', '2023-07-08', 1),
+('Jam Bond', 34, '03344', '2023-07-03', '2023-07-08', 1),
+('Jam Bond', NULL, '03344', '2023-07-03', '2023-07-09', 1),
+('Jam Bond', 36, '2222', '2023-07-03', '2023-07-12', 1),
+('HHH', 35, 'qqq', '2023-07-03', '2023-07-05', 1),
+('a', 35, 'a', '2023-07-01', '2023-07-13', 1),
+('hh', 34, 'hh', '2023-07-07', '2023-07-15', 1),
+('Jams Bond', 35, '012345', '2023-07-06', '2023-07-08', 0),
+('Jams Bond', NULL, '012345', '2023-07-06', '2023-07-08', 0),
+('Dara', 34, '0963180249', '2023-07-06', '2023-07-07', 1),
+('Dara', NULL, '0963180249', '2023-07-06', '2023-07-07', 0),
+('Dara', NULL, '0963180249', '2023-07-06', '2023-07-07', 0),
+('Dara', 22, '0963180249', '2023-07-06', '2023-07-07', 0),
+('Jonh Wick', NULL, '09999', '2023-07-06', '2023-07-15', 1),
+('aa', NULL, 'aa', '2023-07-10', '2023-07-11', 1),
+('dd', NULL, 'dd', '2023-07-10', '2023-07-11', 1),
+('hello', NULL, 'hello', '2023-07-10', '2023-07-12', 1),
+('hello', 39, 'hello', '2023-07-10', '2023-07-11', 1);
 
 -- --------------------------------------------------------
 
@@ -161,44 +144,20 @@ CREATE TABLE `borrowlist` (
 INSERT INTO `borrowlist` (`bookID`, `borrower`, `borrowDate`, `returnDate`, `isReturned`) VALUES
 (20, 'e20200810', '2023-06-22', '2023-06-23', '1'),
 (20, 'e20200810', '2023-06-22', '2023-06-23', '1'),
-(20, 'e20200810', '2023-06-22', '2023-06-24', '0'),
-(NULL, 'e20200810', '2023-06-22', '2023-06-24', '0'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(22, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(22, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(22, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(20, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-24', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-30', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-30', '1'),
-(22, NULL, '2023-06-22', '2023-06-30', '1'),
-(NULL, NULL, '2023-06-22', '2023-06-30', '1'),
-(20, NULL, '2023-06-22', '2023-06-30', '1'),
-(NULL, NULL, '2023-06-23', '2023-06-20', '1'),
-(NULL, NULL, '2023-06-23', '2023-06-20', '1'),
-(NULL, NULL, '2023-06-23', '2023-06-24', '1'),
-(NULL, 'e20200469', '2023-06-24', '2023-06-30', '0'),
-(NULL, 'e20200469', '2023-06-24', '2023-06-30', '0'),
-(NULL, 'e20200469', '2023-06-24', '2023-06-30', '0'),
-(NULL, '123', '2023-06-24', '2023-07-01', '0'),
-(NULL, '123', '2023-06-24', '2023-07-01', '1'),
-(NULL, '123', '2023-06-24', '2023-07-01', '1'),
-(NULL, '123', '2023-06-24', '2023-07-01', '1'),
+(20, 'e20200810', '2023-06-22', '2023-06-24', '1'),
 (22, '123', '2023-06-24', '2023-07-01', '1'),
-(22, 'e20200958', '2023-06-24', '2023-07-01', '0'),
-(43, '456', '2023-06-29', '2023-07-04', '1'),
-(41, '456', '2023-06-29', '2023-07-04', '0'),
-(40, '456', '2023-06-29', '2023-07-04', '0'),
-(39, '456', '2023-06-29', '2023-07-04', '0'),
-(38, '456', '2023-06-29', '2023-07-04', '1');
+(22, 'e20200958', '2023-06-24', '2023-07-01', '1'),
+(NULL, '456', '2023-06-29', '2023-07-04', '1'),
+(NULL, '456', '2023-06-29', '2023-07-04', '1'),
+(NULL, '456', '2023-06-29', '2023-07-04', '1'),
+(39, '456', '2023-06-29', '2023-07-04', '1'),
+(NULL, '456', '2023-06-29', '2023-07-04', '1'),
+(NULL, '123', '2023-07-03', '2023-07-03', '1'),
+(20, 'e20201030', '2023-07-03', '2023-07-04', '1'),
+(NULL, 'e20201030', '2023-07-03', '2023-07-04', '1'),
+(NULL, '123', '2023-07-10', '2023-07-13', '0'),
+(39, '123', '2023-07-10', '2023-07-13', '0'),
+(NULL, '123', '2023-07-10', '2023-07-18', '1');
 
 -- --------------------------------------------------------
 
@@ -219,11 +178,16 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`studentID`, `studentName`, `studentPhone`, `studentPassword`) VALUES
 ('123', 'Hello Yes', '123', '123'),
+('124', '123', '124', '123'),
 ('456', '456', '456', '456'),
 ('e20200460', 'Dara', 'e20200469', 'e20200469'),
 ('e20200469', 'VEN Dara', '0963180249', 'e20200469'),
+('e20200470', 'VEN Dara', '0963180240', '123'),
 ('e20200810', 'ser long', '011285218', '123'),
-('e20200958', 'Ty Sopheaktra', '092815263', 'Tra092815263');
+('e20200958', 'Ty Sopheaktra', '092815263', 'Tra092815263'),
+('e20201030', 'Kheang', '0333333', '345'),
+('ff', 'ff', 'ff', 'ff'),
+('gg', 'gg', 'gg', 'gg');
 
 --
 -- Indexes for dumped tables
@@ -241,6 +205,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`bookID`);
+
+--
+-- Indexes for table `borroweroutside`
+--
+ALTER TABLE `borroweroutside`
+  ADD KEY `bookID` (`bookID`);
 
 --
 -- Indexes for table `borrowlist`
@@ -264,11 +234,17 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `borroweroutside`
+--
+ALTER TABLE `borroweroutside`
+  ADD CONSTRAINT `borroweroutside_ibfk_1` FOREIGN KEY (`bookID`) REFERENCES `books` (`bookID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `borrowlist`
