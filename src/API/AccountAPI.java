@@ -76,9 +76,9 @@ public class AccountAPI {
 
     }
 
-    public boolean existID(String table, String columnID, String ID) {
+    public boolean existID(String table, String columnID, String ID, String columnPhone, String phone) {
         try {
-            String searchSQL = "SELECT * FROM " + table + " WHERE " + columnID + " = '" + ID + "'";
+            String searchSQL = "SELECT * FROM " + table + " WHERE " + columnID + " = '" + ID + "' or " + columnPhone + " = '" + phone + "'";
             stmt = conn.prepareStatement(searchSQL);
             rs = stmt.executeQuery();
             

@@ -159,6 +159,7 @@ public class InsertBookController {
             insertBookAPI.insertBook(books);
             handleClear(event);
             services.alertSuccess("Insert Book Successfully");
+            services.openPage(event, "/pages/insertBookPage.fxml");
         }
 
     }

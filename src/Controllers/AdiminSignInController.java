@@ -54,10 +54,10 @@ public class AdiminSignInController {
         String studentPassword = passwordField.getText();
         String repassword = rePasswordField.getText();
 
-        if(accountAPI.existID("admins", "adminID", studentID)) {
-            services.alertWarnning("Wanning", "Admin ID already existed an account ...!");
+        if(accountAPI.existID("admins", "adminID", studentID, "adminPhone", studentPhone)) {
+            services.alertWarnning("Wanning", "Admin ID or Phone Number already existed an account ...!");
         }
-        if(!repassword.equals(studentPassword) ) {
+        else if(!repassword.equals(studentPassword) ) {
             services.alertWarnning("Incorrect Password", "Please re-input password ...!");
             passwordField.setText("");
             rePasswordField.setText("");
@@ -69,6 +69,7 @@ public class AdiminSignInController {
             else if(studentID != "" && studentName != "" && studentPhone != "" && studentPassword != "") {
                 students = new Students(studentID, studentName, studentPhone, studentPassword);
                 acc.registerAdmin(studentID, studentName, studentPhone, studentPassword);
+                services.alertSuccess("Register succesfully ....");
                 handleLogInBtn(event);
             }
         }

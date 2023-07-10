@@ -58,8 +58,8 @@ public class StudentSignInController {
         String studentPassword = studentPasswordField.getText();
         String repassword = studentRePasswordField.getText();
 
-        if(accountAPI.existID("students", "studentID", studentID)) {
-            services.alertWarnning("Wanning", "Student ID already existed an account ...!");
+        if(accountAPI.existID("students", "studentID", studentID, "studentPhone", studentPhone)) {
+            services.alertWarnning("Wanning", "Student ID or Phone Number already existed an account ...!");
         }
         else if(!repassword.equals(studentPassword) ) {
             services.alertWarnning("Incorrect Password", "Please re-input password ...!");

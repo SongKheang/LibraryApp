@@ -150,7 +150,8 @@ public class editBookController {
         if (title == "" || author == "" || quality == "" || quantity == 0 || bookshelf == "") {
             services.alertWarnning("Complete problem", "Please complete all inportances Info");
         } else if (title != "" && author != "" && quality != "" && quantity != 0 && bookshelf != "") {
-            books = new Books(title, author, year, Category, page, quality, bookshelf, quantity, bookCoverPath);
+            int newQty = quantity - oldBookQty; 
+            books = new Books(title, author, year, Category, page, quality, bookshelf, quantity, newQty, bookCoverPath);
             bookListAPI.updateBook(bookID, books);
             handleClear(event);
             services.openPage(event, "/pages/adminBookListPage.fxml");
@@ -196,6 +197,7 @@ public class editBookController {
         studentName.setText(LogInController.userID);
     }
 
+    private int oldBookQty;
     public void setField() {
         books = bookListAPI.getSelectedBook(bookID);
         titleField.setText(books.getTitle());
@@ -207,6 +209,7 @@ public class editBookController {
         quantityField.setText(Integer.toString(books.getQuantity()));
         booksheltField.setText(books.getBookshelf());
         bookCover.setImage(services.getImageWithPath(books.getBookCoverPath()));
+        oldBookQty = books.getQuantity();
     }
 
     public void setCategoryComboBox() {

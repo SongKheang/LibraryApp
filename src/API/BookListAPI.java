@@ -129,7 +129,7 @@ public class BookListAPI {
 
     public void updateBook(int bookID, Books book) {
         try {
-            String sql = "Update books SET title = ?, author = ?, year = ?, category = ?, page = ?, quality = ?, bookshelf = ?, quantity = ?, bookCoverPath = ? WHERE bookID = ?";
+            String sql = "Update books SET title = ?, author = ?, year = ?, category = ?, page = ?, quality = ?, bookshelf = ?, quantity = ?, remain = if(remain + ? < 0, 0, remain + ?), bookCoverPath = ? WHERE bookID = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, book.getTitle());
             stmt.setString(2, book.getAuthor());
@@ -139,12 +139,35 @@ public class BookListAPI {
             stmt.setString(6, book.getQuality());
             stmt.setString(7, book.getBookshelf());
             stmt.setInt(8, book.getQuantity());
-            stmt.setString(9, book.getBookCoverPath());
-            stmt.setInt(10, bookID);
+            stmt.setInt(9, book.getRemain());
+            stmt.setInt(10, book.getRemain());
+            stmt.setString(11, book.getBookCoverPath());
+            stmt.setInt(12, bookID);
 
             stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public boolean isBorrowed(int bookID) {
+        try {
+            String sql = "select bookID from books where bookID in (select bookID from borrowlist where bookID = '" + bookID + "' and isReturned like 0) or bookID in (select bookID from borroweroutside where bookID = '" + bookID + "' and isReturned = 0)";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            if(rs.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        BookListAPI bb = new BookListAPI();
+        System.out.println(bb.isBorrowed(39));
+        System.out.println(bb.isBorrowed(38));
     }
 }

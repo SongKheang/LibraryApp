@@ -3,6 +3,7 @@ package API;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
 import Config.DatabaseConnection;
 import Controllers.Services;
@@ -57,7 +58,10 @@ public class AdminBorrowListAPI {
                     isReturned = "Yes";
                 }
 
-                if(isReturned.equals(returnCombo)) {
+                if(isReturned.equals("No") && returnCombo.equals("Late Return") && LocalDate.parse(returnDate).isBefore(LocalDate.now())) {
+                    borrowsList.add(new Borrows(bookID, title, borrower, phoneNumber, borrowDate, returnDate, isReturned));
+                }
+                else if(isReturned.equals(returnCombo)) {
                     borrowsList.add(new Borrows(bookID, title, borrower, phoneNumber, borrowDate, returnDate, isReturned));
                 }
                 else if(returnCombo.equals("All")){
@@ -91,7 +95,10 @@ public class AdminBorrowListAPI {
                     isReturned = "Yes";
                 }
 
-                if(isReturned.equals(returnCombo)) {
+                if(isReturned.equals("No") && returnCombo.equals("Late Return") && LocalDate.parse(returnDate).isBefore(LocalDate.now())) {
+                    borrowsList.add(new Borrows(bookID, title, borrower, phoneNumber, borrowDate, returnDate, isReturned));
+                }
+                else if(isReturned.equals(returnCombo)) {
                     borrowsList.add(new Borrows(bookID, title, borrower, phoneNumber, borrowDate, returnDate, isReturned));
                 }
                 else if(returnCombo.equals("All")){

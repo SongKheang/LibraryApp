@@ -52,6 +52,20 @@ public class Books {
         this.bookCoverPath = bookCoverPath;
     }
 
+    public Books(String title, String author, int year, String category, int page, String quality,
+            String bookshelf, int quantity, int newQty, String bookCoverPath) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.category = category;
+        this.page = page;
+        this.quality = quality;
+        this.bookshelf = bookshelf;
+        this.quantity = quantity;
+        this.remain = newQty;
+        this.bookCoverPath = bookCoverPath;
+    }
+
     public String getBookCoverPath() {
         return bookCoverPath;
     }

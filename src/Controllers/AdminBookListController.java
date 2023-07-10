@@ -188,12 +188,16 @@ public class AdminBookListController {
 
     @FXML
     void handleDeleteBook(ActionEvent event) {
-        if (selectedBook != null) {
+        if (selectedBook != null && !bookListAPI.isBorrowed(selectedBook.getBookID())) {
             bookListAPI.deleteBook(selectedBook.getBookID());
             tableView.setItems(bookListAPI.getBookList());
             selectedBook = null;
             services.openPage(event, "/pages/adminBookListPage.fxml");
-        } else {
+        }
+        else if(selectedBook != null && bookListAPI.isBorrowed(selectedBook.getBookID())) {
+            services.alertWarnning("Can't be delete ", "Book has been borrowed ...");
+        }
+        else {
             services.alertWarnning("Did't selecte Books", "You need to select book in list first ...");
         }
     }
